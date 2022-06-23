@@ -1,0 +1,100 @@
+<!-- NAVBAR -->
+<div class="navbar sombra sticky-top container-fluid py-3" style="background-color: #ffffff;">
+    <button class="buttonTitle">GESTOR HOTELERO</button>
+    <form class="d-flex">
+        <button  class="buttonHome" data-bs-toggle="modal" data-bs-target="#exampleModalLogin" type="button">
+            <span>
+                <svg class="mb-1" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
+                    <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+                </svg>
+            </span>
+            <span></span>
+            <span></span>
+            <span></span>
+            Login
+        </button>
+        <button class="buttonHome ms-3" data-bs-toggle="modal" data-bs-target="#exampleModalregister" type="button">
+            <span>
+                <svg class="mb-1" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-plus-fill" viewBox="0 0 16 16">
+                    <path d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+                    <path fill-rule="evenodd" d="M13.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5z"/>
+                </svg>
+            </span>
+            <span></span>
+            <span></span>
+            <span></span>
+            Register
+        </button>
+    </form>
+</div>
+
+<!-- MODAL LOGIN -->
+<div class="modal fade" id="exampleModalLogin" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="container">
+            <div class="modal-content">
+                <div class="contact-box">
+                    <div class="left"></div>
+                    <div class="right">
+                        <div class="position-relative">
+                            <button type="button" class="btn-close position-absolute top-0 start-100 translate-middle" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <form>
+                            <h2>Login</h2>
+                            <input [(ngModel)]="this.dataUser.username" name="user" type="text" class="field" placeholder="User">
+                            <input [(ngModel)]="this.dataUser.password" name="pass" type="password" class="field" placeholder="Password">
+                            <div class="modal-footer">
+                                <button (click)="login()" class="btn" data-bs-dismiss="modal">Login</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal register-->
+<div class="modal fade" id="exampleModalregister" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="container">
+            <div class="modal-content">
+                <div class="contact-box">
+                    <div class="leftRegister"></div>
+                    <div class="right">
+                        <div class="position-relative">
+                            <button type="button" class="btn-close position-absolute top-0 start-100 translate-middle" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <h2>Register</h2>
+                        <form #registerForm>
+                            <div>
+                                <input [(ngModel)]="this.client.name" name="name" type="text" class="field" placeholder="Name">
+                            </div>
+                            <div>
+                                
+                                <input [(ngModel)]="this.client.lastname" name="lastname" type="text" class="field" placeholder="Last name" required>
+                            </div>
+                            <div>
+                                
+                                <input [(ngModel)]="this.client.email" name="email" type="email" class="field" placeholder="Email" required>
+                            </div>
+                            <div>
+                                
+                                <input [(ngModel)]="this.client.phone" name="phone" type="text" class="field" placeholder="Phone" required>
+                            </div>
+                            <div>
+                                
+                                <input [(ngModel)]="this.client.username" name="username" type="text" class="field" placeholder="Username" required>
+                            </div>
+                            <div>
+                                
+                                <input [(ngModel)]="this.client.password" name="password" type="password" class="field" placeholder="Password" required>
+                            </div>
+                            <button (click)="register()" class="btn" data-bs-dismiss="modal">Save</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

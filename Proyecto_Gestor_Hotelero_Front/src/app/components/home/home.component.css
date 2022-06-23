@@ -1,0 +1,117 @@
+/*
+SLIDER DE IMAGENES*/
+
+.carousel-item {
+    height: auto;
+    width: 100%;
+}
+
+.carousel-inner {
+    height: auto;
+    max-width: auto;
+}
+
+
+.carousel-slide{
+    height: auto;
+    width: auto;
+}
+
+.btnCarousel{
+    border-radius: 10px;
+}
+
+.imgCarousel{
+    height: 40rem;
+}
+
+/*CUERPO DE LA VISTA*/
+.body{
+    font-family: 'Raleway', sans-serif;
+}
+
+.subtitle{
+    color: black;
+    font-size: 2.5rem;
+    margin-bottom: 35px;
+    text-align: center;
+    margin-top: 4%;
+}
+
+.container{
+    width: 90%;
+    margin: 0 auto;
+    overflow: hidden;
+    padding: 40px 0;
+    max-width: 80%;
+    text-align: justify;
+}
+
+.h1{
+    text-align: center;
+    margin: 2rem;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 400%;
+    color: rgb(0, 0, 0);
+}
+
+.h2{
+    text-align: center;
+    margin: 2rem;
+    font-family:'Muli',sans-serif;;
+    font-size: 325%;
+    color: rgb(0, 0, 0);
+}
+
+
+.containerHome{
+    background-color: rgb(255, 255, 255);
+    
+}
+
+.description{
+    line-height: 1.5;
+    font-weight: 500;
+    font-size: 1.5rem; 
+    text-align:center;
+    color: rgb(0, 0, 0);
+}
+
+.subtitle{
+    font-family: Brush Script MT;
+    color: rgb(0, 0, 0);
+    text-align: center;
+    font-size: 3rem;
+}
+
+/* imagenes*/
+
+.info{
+    min-height: 400px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    row-gap: 80px;
+    justify-items: center;
+    align-items: center;
+}
+
+.info_img{
+    text-align: center;
+}
+
+.info_img--left{
+    text-align: left;
+}
+
+.info_picture{
+    max-width: 80%;
+    border-radius: 2rem;
+}
+
+.info_paragraph{
+    margin-bottom: 20px;
+    line-height: 1.5;
+    font-weight: 500;
+    font-size: 1.25rem;    
+
+}

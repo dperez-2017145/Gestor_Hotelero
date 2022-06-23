@@ -1,0 +1,34 @@
+<app-nav-bar></app-nav-bar>
+
+<section>
+    <div *ngFor="let hotel of arrayHotels" class="container py-1">
+        <div class="h1 text-center text-dark" id="pageHeaderTitle"></div>
+
+        <article class="postcard light blue">
+            <a class="postcard__img_link" href="#">
+                <img class="postcard__img" src="../../../assets/img/Statü Güzelyurt Residence_Manisa.jfif" alt="Image Title">
+            </a>
+            <div class="postcard__text t-dark">
+                <h1 class="postcard__title blue"><a [routerLink]="['/profileHotel/' + hotel._id]">{{hotel.nameHotel}}</a></h1>
+                <div class="postcard__subtitle small">
+                    <time datetime="2020-05-25 12:00:00">
+                        <i class="fas fa-calendar-alt mr-2"></i>{{hotel.direction}}
+                    </time>
+                </div>
+                <div class="postcard__bar"></div>
+                <div class="postcard__preview-txt">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check" viewBox="0 0 16 16">
+                        <path d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.267.267 0 0 1 .02-.022z"/>
+                      </svg>Email: {{hotel.email}} <br>
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check" viewBox="0 0 16 16">
+                        <path d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.267.267 0 0 1 .02-.022z"/>
+                      </svg>Phone: {{hotel.phone}}
+                </div>
+                <ul class="postcard__tagbox">
+                    <button type="button" class="btn boton_1"><img src="../../../assets/img/lapiz.png" alt="" class="img-icons"></button>
+                    <button type="button" class="btn boton_1"><img src="../../../assets/img/basura.png" alt="" class="img-icons"></button>
+                </ul>
+            </div>
+        </article>
+    </div>
+</section>

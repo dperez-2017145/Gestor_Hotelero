@@ -1,0 +1,65 @@
+<div class="table" >
+    <h1>CUSTOMERS</h1>
+    <table class="table">
+    <thead style="background-color: #cfdde6;">
+        <tr>
+        <th scope="col">NAME</th>
+        <th scope="col">LAST NAME</th>
+        <th scope="col">EMAIL</th>
+        <th scope="col">PHONE</th>
+        <th scope="col">USERNAME</th>
+        </tr>
+    </thead>
+    <tbody class="table-group-divider">
+        <tr class="texto">
+        <td>Juan</td>
+        <td>García</td>
+        <td>jgarcia@gmail.com</td>
+        <td>1122-3344</td>
+        <td>Juan23</td>
+        </tr>
+    </tbody>
+    </table>
+</div>
+<div class="table" >
+    <h1>MANAGERS</h1>
+    <table class="table">
+    <thead style="background-color: #cfdde6;">
+        <tr>
+        <th scope="col">NAME</th>
+        <th scope="col">USERNAME</th>
+        <th scope="col">ACTIONS</th>
+        </tr>
+    </thead>
+    <tbody class="table-group-divider">
+        <tr class="texto">
+        <td>Miguel</td>
+        <td>Migue09</td>
+        <td>
+            <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#exampleModalUpdateEvent"><img src="../../../assets/img/lapiz.png" alt="" class="img-icons"></button>
+        </td>
+        </tr>
+    </tbody>
+    </table>
+</div>
+<!-- MODAL UPDATE MANAGER -->
+<div class="modal fade" id="exampleModalUpdateEvent" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="container">
+        <div class="modal-content">
+            <div class="contact-box">
+                <div class="left"></div>
+                <div class="right">
+                    <div class="position-relative">
+                        <button type="button" class="btn-close position-absolute top-0 start-100 translate-middle" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <h2>Update</h2>
+                    <input type="text" class="field" placeholder="Name">
+                    <input type="text" class="field" placeholder="Username">
+                    <button class="buttonModalNewUser" data-bs-dismiss="modal">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>

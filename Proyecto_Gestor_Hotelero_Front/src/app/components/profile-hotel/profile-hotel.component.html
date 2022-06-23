@@ -1,0 +1,201 @@
+<app-nav-bar></app-nav-bar>
+
+<div class="d-flex justify-content-between mt-5">
+    <div>
+        <button class="btn boton_1 ms-5" type="button">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        Make a reservation
+    </button>
+    <button type="button" class="btn boton_1 ms-4" data-bs-toggle="modal" data-bs-target="#exampleModalAddService">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        Add Service 
+    </button>
+    <button type="button" class="btn boton_1 ms-4" data-bs-toggle="modal" data-bs-target="#exampleModalAddEvent" 
+    type="button">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        Add Event 
+    </button>
+    </div>
+    <div></div>
+    <div></div>
+</div>
+<div class="table">
+    <h1>Services</h1>
+    <table class="table table mt-3">
+      <thead style="background-color: #FFD60A;">
+        <tr>
+          <th scope="col">Name Service</th>
+          <th scope="col">Price</th>
+          <th scope="col">Actions</th>
+        </tr>
+      </thead>
+      <tbody class="table-group-divider">
+        <tr class="texto">
+          <td>d</td>
+          <td>d</td>
+          <td>
+            <button type="button" class="btn btn-primary me-3" data-bs-toggle="modal" data-bs-target="#exampleModalUpdateService"><img src="../../../assets/img/lapiz.png" alt="" class="img-icons"></button>
+            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModalSellProduct"><img src="../../../assets/img/basura.png" alt="" class="img-icons"></button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+<div class="table" >
+    
+    <h1>Events</h1>
+    <table class="table">
+    <thead style="background-color: #cfdde6;">
+        <tr>
+        <th scope="col">Name Event</th>
+        <th scope="col">Type</th>
+        <th scope="col">Description</th>
+        <th scope="col">Actions</th>
+        </tr>
+    </thead>
+    <tbody class="table-group-divider">
+        <tr class="texto">
+        <td>Tenis</td>
+        <td>Tennis court</td>
+        <td>Tennis court</td>
+        <td>
+            <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#exampleModalUpdateEvent"><img src="../../../assets/img/lapiz.png" alt="" class="img-icons"></button>
+            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModalDeleteEvent"><img src="../../../assets/img/basura.png" alt="" class="img-icons"></button>
+        </td>
+        </tr>
+    </tbody>
+    </table>
+</div>
+<!-- MODAL PARA AGREGAR UN SERVICIO -->
+<div class="modal fade" id="exampleModalAddService" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="container">
+            <div class="modal-content">
+                <div class="contact-box">
+                    <div class="left"></div>
+                    <div class="right">
+                        <div class="position-relative">
+                            <button type="button" class="btn-close position-absolute top-0 start-100 translate-middle" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <h2>Service data</h2>
+                        <input type="text" class="field" placeholder="Name">
+                        <input type="text" class="field" placeholder="Price">
+                        <button class="buttonModalNewUser" data-bs-dismiss="modal">Save</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- MODAL UPDATE SERVICIO -->
+<div class="modal fade" id="exampleModalUpdateService" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="container">
+        <div class="modal-content">
+            <div class="contact-box">
+                <div class="left"></div>
+                <div class="right">
+                    <div class="position-relative">
+                        <button type="button" class="btn-close position-absolute top-0 start-100 translate-middle" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <h2>Update Service</h2>
+                    <input type="text" class="field" placeholder="Name">
+                    <input type="text" class="field" placeholder="Price">
+                    <button class="buttonModalNewUser" data-bs-dismiss="modal">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<!-- MODAL PARA ELIMINAR UN SERVICIO -->
+<div class="modal fade" id="exampleModalDeleteService" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="container">
+            <div class="modal-content">
+                <div class="contact-box">
+                    <div class="left"></div>
+                    <div class="right">
+                        <div class="position-relative">
+                            <button type="button" class="btn-close position-absolute top-0 start-100 translate-middle" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <h4>Are you sure to delete this service?</h4>
+                        <button class="buttonModalNewUser mb-3" data-bs-dismiss="modal">Yes</button>
+                        <button style="background: #F8333C;" class="buttonModalNewUser" data-bs-dismiss="modal">No</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- MODAL PARA AGREGAR UN EVENTO -->
+<div class="modal fade" id="exampleModalAddEvent" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="container">
+            <div class="modal-content">
+                <div class="contact-box">
+                    <div class="left"></div>
+                    <div class="right">
+                        <div class="position-relative">
+                            <button type="button" class="btn-close position-absolute top-0 start-100 translate-middle" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <h2>Event data</h2>
+                        <input type="text" class="field" placeholder="Name">
+                        <input type="text" class="field" placeholder="Description">
+                        <button class="buttonModalNewUser" data-bs-dismiss="modal">Save</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- MODAL UPDATE EVENTO -->
+<div class="modal fade" id="exampleModalUpdateEvent" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="container">
+        <div class="modal-content">
+            <div class="contact-box">
+                <div class="left"></div>
+                <div class="right">
+                    <div class="position-relative">
+                        <button type="button" class="btn-close position-absolute top-0 start-100 translate-middle" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <h2>Update event</h2>
+                    <input type="text" class="field" placeholder="Name">
+                    <input type="text" class="field" placeholder="Description">
+                    <button class="buttonModalNewUser" data-bs-dismiss="modal">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<!-- MODAL PARA ELIMINAR UN EVENTO -->
+<div class="modal fade" id="exampleModalDeleteEvent" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="container">
+            <div class="modal-content">
+                <div class="contact-box">
+                    <div class="left"></div>
+                    <div class="right">
+                        <div class="position-relative">
+                            <button type="button" class="btn-close position-absolute top-0 start-100 translate-middle" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <h4>Are you sute to delete this event?</h4>
+                        <button class="buttonModalNewUser mb-3" data-bs-dismiss="modal">Yes</button>
+                        <button style="background: #F8333C;" class="buttonModalNewUser" data-bs-dismiss="modal">No</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
