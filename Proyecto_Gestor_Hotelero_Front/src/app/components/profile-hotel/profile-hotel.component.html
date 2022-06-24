@@ -1,22 +1,22 @@
+<div class="background">
 <app-nav-bar></app-nav-bar>
-
 <div class="d-flex justify-content-between mt-5">
     <div>
-        <button class="btn boton_1 ms-5" type="button">
+        <button *ngIf="this.role === 'CLIENT'" class="btn boton_1 ms-5" type="button">
         <span></span>
         <span></span>
         <span></span>
         <span></span>
         Make a reservation
     </button>
-    <button type="button" class="btn boton_1 ms-4" data-bs-toggle="modal" data-bs-target="#exampleModalAddService">
+    <button *ngIf="this.role === 'MANAGER'" type="button" class="btn boton_1 ms-4" data-bs-toggle="modal" data-bs-target="#exampleModalAddService">
         <span></span>
         <span></span>
         <span></span>
         <span></span>
         Add Service 
     </button>
-    <button type="button" class="btn boton_1 ms-4" data-bs-toggle="modal" data-bs-target="#exampleModalAddEvent" 
+    <button *ngIf="this.role === 'MANAGER'" type="button" class="btn boton_1 ms-4" data-bs-toggle="modal" data-bs-target="#exampleModalAddEvent" 
     type="button">
         <span></span>
         <span></span>
@@ -35,16 +35,16 @@
         <tr>
           <th scope="col">Name Service</th>
           <th scope="col">Price</th>
-          <th scope="col">Actions</th>
+          <th *ngIf="this.role === 'MANAGER'" scope="col">Actions</th>
         </tr>
       </thead>
-      <tbody class="table-group-divider">
+      <tbody *ngFor="let service of arrayServices" class="table-group-divider">
         <tr class="texto">
-          <td>d</td>
-          <td>d</td>
-          <td>
+          <td>{{service.name}}</td>
+          <td>Q {{service.price}}</td>
+          <td *ngIf="this.role === 'MANAGER'">
             <button type="button" class="btn btn-primary me-3" data-bs-toggle="modal" data-bs-target="#exampleModalUpdateService"><img src="../../../assets/img/lapiz.png" alt="" class="img-icons"></button>
-            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModalSellProduct"><img src="../../../assets/img/basura.png" alt="" class="img-icons"></button>
+            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModalDeleteService"><img src="../../../assets/img/basura.png" alt="" class="img-icons"></button>
           </td>
         </tr>
       </tbody>
@@ -59,16 +59,16 @@
         <th scope="col">Name Event</th>
         <th scope="col">Type</th>
         <th scope="col">Description</th>
-        <th scope="col">Actions</th>
+        <th *ngIf="this.role === 'MANAGER'" scope="col">Actions</th>
         </tr>
     </thead>
-    <tbody class="table-group-divider">
+    <tbody *ngFor="let event of arrayEvents" class="table-group-divider">
         <tr class="texto">
-        <td>Tenis</td>
-        <td>Tennis court</td>
-        <td>Tennis court</td>
-        <td>
-            <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#exampleModalUpdateEvent"><img src="../../../assets/img/lapiz.png" alt="" class="img-icons"></button>
+        <td>{{event.name}}</td>
+        <td>{{event.type}}</td>
+        <td>{{event.description}}</td>
+        <td *ngIf="this.role === 'MANAGER'">
+            <button type="button" class="btn btn-primary me-3" data-bs-toggle="modal" data-bs-target="#exampleModalUpdateEvent"><img src="../../../assets/img/lapiz.png" alt="" class="img-icons"></button>
             <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModalDeleteEvent"><img src="../../../assets/img/basura.png" alt="" class="img-icons"></button>
         </td>
         </tr>
@@ -198,4 +198,5 @@
             </div>
         </div>
     </div>
+</div>
 </div>

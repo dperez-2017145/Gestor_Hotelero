@@ -3,10 +3,11 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { NavBarLoginRestService } from './nav-bar-login-rest.service';
 
+
 @Injectable({
   providedIn: 'root'
 })
-export class HotelRestService {
+export class ManagerRestService {
 
   httpOptions = new HttpHeaders({
     "Content-Type": "application/json",
@@ -18,15 +19,10 @@ export class HotelRestService {
     public navBarRest: NavBarLoginRestService
   ) { }
 
-  getHotels(){
-    return this.http.get(environment.baseUri + "admin/getHotels", {headers: this.httpOptions});
+  getHotelByManager(idManager:any){
+    return this.http.get(environment.baseUri + 'manager/getHotelByManager/' + idManager, {headers:this.httpOptions});
   }
 
-  getServices(idHotel: any){
-    return this.http.get(environment.baseUri + "hotel/getServices/" + idHotel , {headers: this.httpOptions});
-  }
-
-  getEvents(idHotel: any){
-    return this.http.get(environment.baseUri + "hotel/getEvents/" + idHotel, {headers:this.httpOptions});
-  }
 }
+
+

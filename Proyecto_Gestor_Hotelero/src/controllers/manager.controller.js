@@ -3,6 +3,7 @@ const {dataObligatory} = require("../utils/validate");
 const Room = require("../models/room.model");
 const Event = require("../models/event.model");
 const Service = require('../models/hotelService.model');
+const Hotel = require("../models/hotel.model");
 
 //FUNCIÓN PARA CREAR UNA HABITACIÓN ASIGNADA A UN HOTEL.
 exports.createRoom = async (req, res) => {
@@ -192,6 +193,22 @@ exports.deleteService = async(req, res)=>{
             return res.status(200).send({message: 'Service deleted.'})
         }
     }catch(err){
+        console.log(err);
+        return err;
+    }
+}
+
+//FUNCION PARA OBTENER UN HOTEL A TRAVES DEL ID DEL MANAGER
+exports.getHotelByManager = async(req, res)=>{
+    try {
+        const idManager = req.params.idManager;
+        const hotelFound = await Hotel.findOne({idManager: idManager});
+        if(!hotelFound){
+            res.status(404).send({message:'Hotel not found'});
+        }else{
+            res.status(200).send({hotelFound});
+        }
+    } catch (err) {
         console.log(err);
         return err;
     }

@@ -12,5 +12,6 @@ api.delete("/deleteEvent/:idEvent", [middleware.isLoged, middleware.isManager], 
 api.post('/createService/:idHotel', [middleware.isLoged, middleware.isManager], managerController.createService);
 api.put('/updateService/:idService', [middleware.isLoged, middleware.isManager], managerController.updateService);
 api.delete('/deleteService/:idService', [middleware.isLoged, middleware.isManager], managerController.deleteService);
+api.get('/getHotelByManager/:idManager', [middleware.isLoged, middleware.isManager], managerController.getHotelByManager);
 
 module.exports = api;
