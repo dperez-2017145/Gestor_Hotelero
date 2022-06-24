@@ -18,12 +18,13 @@ export class UserComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.getHotelByAdmin();
   }
 
   getHotelByAdmin(){
     this.managerRest.getHotelByManager(this.navBarRest.getUser()._id).subscribe({
       next: (res:any)=>{
-        this.idHotel = res.hotelFound._id;
+        return this.idHotel = res.hotelFound._id;
       },
       error:(err)=>{
         Swal.fire({
