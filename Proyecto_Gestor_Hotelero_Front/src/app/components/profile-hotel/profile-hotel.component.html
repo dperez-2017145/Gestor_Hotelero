@@ -16,8 +16,7 @@
         <span></span>
         Add Service 
     </button>
-    <button *ngIf="this.role === 'MANAGER'" type="button" class="btn boton_1 ms-4" data-bs-toggle="modal" data-bs-target="#exampleModalAddEvent" 
-    type="button">
+    <button *ngIf="this.role === 'MANAGER'" type="button" class="btn boton_1 ms-4" data-bs-toggle="modal" data-bs-target="#exampleModalAddEvent" type="button">
         <span></span>
         <span></span>
         <span></span>
@@ -43,8 +42,8 @@
           <td>{{service.name}}</td>
           <td>Q {{service.price}}</td>
           <td *ngIf="this.role === 'MANAGER'">
-            <button type="button" class="btn btn-primary me-3" data-bs-toggle="modal" data-bs-target="#exampleModalUpdateService"><img src="../../../assets/img/lapiz.png" alt="" class="img-icons"></button>
-            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModalDeleteService"><img src="../../../assets/img/basura.png" alt="" class="img-icons"></button>
+            <button (click)="getService(service._id)" type="button" class="btn btn-primary me-3" data-bs-toggle="modal" data-bs-target="#exampleModalUpdateService"><img src="../../../assets/img/lapiz.png" alt="" class="img-icons"></button>
+            <button (click)="getService(service._id)" type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModalDeleteService"><img src="../../../assets/img/basura.png" alt="" class="img-icons"></button>
           </td>
         </tr>
       </tbody>
@@ -68,8 +67,8 @@
         <td>{{event.type}}</td>
         <td>{{event.description}}</td>
         <td *ngIf="this.role === 'MANAGER'">
-            <button type="button" class="btn btn-primary me-3" data-bs-toggle="modal" data-bs-target="#exampleModalUpdateEvent"><img src="../../../assets/img/lapiz.png" alt="" class="img-icons"></button>
-            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModalDeleteEvent"><img src="../../../assets/img/basura.png" alt="" class="img-icons"></button>
+            <button (click)="this.getEvent(event._id)" type="button" class="btn btn-primary me-3" data-bs-toggle="modal" data-bs-target="#exampleModalUpdateEvent"><img src="../../../assets/img/lapiz.png" alt="" class="img-icons"></button>
+            <button (click)="this.getEvent(event._id)" type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModalDeleteEvent"><img src="../../../assets/img/basura.png" alt="" class="img-icons"></button>
         </td>
         </tr>
     </tbody>
@@ -86,10 +85,12 @@
                         <div class="position-relative">
                             <button type="button" class="btn-close position-absolute top-0 start-100 translate-middle" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
+                        <form>
                         <h2>Service data</h2>
-                        <input type="text" class="field" placeholder="Name">
-                        <input type="text" class="field" placeholder="Price">
-                        <button class="buttonModalNewUser" data-bs-dismiss="modal">Save</button>
+                            <input [(ngModel)]="service.name" name="name" type="text" class="field" placeholder="Name">
+                            <input [(ngModel)]="service.price" name="price" type="text" class="field" placeholder="Price">
+                            <button (click)="createService()" class="buttonModalNewUser" data-bs-dismiss="modal">Save</button>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -108,9 +109,9 @@
                         <button type="button" class="btn-close position-absolute top-0 start-100 translate-middle" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <h2>Update Service</h2>
-                    <input type="text" class="field" placeholder="Name">
-                    <input type="text" class="field" placeholder="Price">
-                    <button class="buttonModalNewUser" data-bs-dismiss="modal">Save</button>
+                    <input [(ngModel)]="this.serviceUpdate.name" name="name" type="text" class="field" placeholder="Name">
+                    <input  [(ngModel)]="this.serviceUpdate.price" name="price" type="text" class="field" placeholder="Price">
+                    <button (click)="updateService()" class="buttonModalNewUser" data-bs-dismiss="modal">Save</button>
                 </div>
             </div>
         </div>
@@ -129,7 +130,7 @@
                             <button type="button" class="btn-close position-absolute top-0 start-100 translate-middle" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <h4>Are you sure to delete this service?</h4>
-                        <button class="buttonModalNewUser mb-3" data-bs-dismiss="modal">Yes</button>
+                        <button (click)="deleteService()" class="buttonModalNewUser mb-3" data-bs-dismiss="modal">Yes</button>
                         <button style="background: #F8333C;" class="buttonModalNewUser" data-bs-dismiss="modal">No</button>
                     </div>
                 </div>
@@ -149,9 +150,12 @@
                             <button type="button" class="btn-close position-absolute top-0 start-100 translate-middle" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <h2>Event data</h2>
-                        <input type="text" class="field" placeholder="Name">
-                        <input type="text" class="field" placeholder="Description">
-                        <button class="buttonModalNewUser" data-bs-dismiss="modal">Save</button>
+                        <form #createEventForm>
+                            <input [(ngModel)]="event.name" name="name" type="text" class="field" placeholder="Name">
+                            <input [(ngModel)]="event.type" name="type" type="text" class="field" placeholder="Type">
+                            <input [(ngModel)]="event.description" name="description" class="field" type="text" class="field" placeholder="Description">
+                            <button (click)="createEvent()" class="buttonModalNewUser" data-bs-dismiss="modal">Save</button>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -170,9 +174,10 @@
                         <button type="button" class="btn-close position-absolute top-0 start-100 translate-middle" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <h2>Update event</h2>
-                    <input type="text" class="field" placeholder="Name">
-                    <input type="text" class="field" placeholder="Description">
-                    <button class="buttonModalNewUser" data-bs-dismiss="modal">Save</button>
+                    <input [(ngModel)]="this.eventUpdate.name" name="name" type="text" class="field" placeholder="Name">
+                    <input [(ngModel)]="this.eventUpdate.type" name="type" type="text" class="field" placeholder="Type">
+                    <input [(ngModel)]="this.eventUpdate.description" name="description" type="text" class="field" placeholder="Description">
+                    <button (click)="this.updateEvent()" class="buttonModalNewUser" data-bs-dismiss="modal">Save</button>
                 </div>
             </div>
         </div>
@@ -191,7 +196,7 @@
                             <button type="button" class="btn-close position-absolute top-0 start-100 translate-middle" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <h4>Are you sute to delete this event?</h4>
-                        <button class="buttonModalNewUser mb-3" data-bs-dismiss="modal">Yes</button>
+                        <button (click)="deleteEvent()" class="buttonModalNewUser mb-3" data-bs-dismiss="modal">Yes</button>
                         <button style="background: #F8333C;" class="buttonModalNewUser" data-bs-dismiss="modal">No</button>
                     </div>
                 </div>

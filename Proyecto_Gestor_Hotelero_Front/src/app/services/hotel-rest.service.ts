@@ -22,11 +22,52 @@ export class HotelRestService {
     return this.http.get(environment.baseUri + "admin/getHotels", {headers: this.httpOptions});
   }
 
-  getServices(idHotel: any){
-    return this.http.get(environment.baseUri + "hotel/getServices/" + idHotel , {headers: this.httpOptions});
+  getHotel(idHotel:any){
+    return this.http.get(environment.baseUri + "hotel/gelHotel" + idHotel, {headers: this.httpOptions});
   }
+
+  //SERVICIOS DE LOS EVENTOS DEL HOTEL
 
   getEvents(idHotel: any){
     return this.http.get(environment.baseUri + "hotel/getEvents/" + idHotel, {headers:this.httpOptions});
   }
+  
+  getEvent(idEvent:any){
+    return this.http.get(environment.baseUri + "hotel/getEvent/" + idEvent, {headers:this.httpOptions});
+  }
+  
+  createEvent(idHotel:any, params: {}){
+    return this.http.post(environment.baseUri + "manager/createEvent/" + idHotel, params, {headers:this.httpOptions});
+  }
+  
+  updateEvent(idEvent:any, params:{}){
+    return this.http.put(environment.baseUri + "manager/updateEvent/" + idEvent, params, {headers:this.httpOptions});
+  }
+  
+  deleteEvent(idEvent:any){
+    return this.http.delete(environment.baseUri + "manager/deleteEvent/" + idEvent, {headers:this.httpOptions});
+  }
+
+  //SERVICIOS DE LOS SERVICIOS DEL HOTEL
+
+  getServices(idHotel: any){
+    return this.http.get(environment.baseUri + "hotel/getServices/" + idHotel , {headers: this.httpOptions});
+  }
+
+  getService(idService:any){
+    return this.http.get(environment.baseUri + "hotel/getService/" + idService, {headers: this.httpOptions});
+  }
+
+  createService(idHotel:any, params:{}){
+    return this.http.post(environment.baseUri + "manager/createService/" + idHotel, params, {headers: this.httpOptions});
+  }
+
+  updateService(idService: any, params:{}){
+    return this.http.put(environment.baseUri + "manager/updateService/" + idService, params, {headers:this.httpOptions});
+  }
+
+  deleteService(idService:any){
+    return this.http.delete(environment.baseUri + "manager/deleteService/" + idService, {headers: this.httpOptions});
+  }
+  
 }

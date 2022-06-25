@@ -90,11 +90,11 @@ exports.getServices = async(req, res)=>{
 exports.getService = async(req, res)=>{
     try {
         const idService = req.params.idService;
-        const eventFound = await Service.findOne({idService: idService});
-        if(!eventFound){
+        const serviceFound = await Service.findOne({_id: idService});
+        if(!serviceFound){
             return res.status(404).send({message: 'Service not available.'});
         }else{
-            return res.status(200).send({eventFound});
+            return res.status(200).send({serviceFound});
         }
     } catch (err) {
         console.log(err);

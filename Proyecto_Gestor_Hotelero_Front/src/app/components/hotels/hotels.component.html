@@ -1,36 +1,127 @@
 <div class="background">
-<app-nav-bar></app-nav-bar>
+    <app-nav-bar></app-nav-bar>
 
-<section>
-    <div *ngFor="let hotel of arrayHotels" class="container py-1">
-        <div class="h1 text-center text-dark" id="pageHeaderTitle"></div>
-
-        <article class="postcard light blue">
-            <a class="postcard__img_link" href="#">
-                <img class="postcard__img" src="../../../assets/img/Statü Güzelyurt Residence_Manisa.jfif" alt="Image Title">
-            </a>
-            <div class="postcard__text t-dark">
-                <h1 class="postcard__title blue"><a [routerLink]="['/profileHotel/' + hotel._id]">{{hotel.nameHotel}}</a></h1>
-                <div class="postcard__subtitle small">
-                    <time datetime="2020-05-25 12:00:00">
-                        <i class="fas fa-calendar-alt mr-2"></i>{{hotel.direction}}
-                    </time>
-                </div>
-                <div class="postcard__bar"></div>
-                <div class="postcard__preview-txt">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check" viewBox="0 0 16 16">
-                        <path d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.267.267 0 0 1 .02-.022z"/>
-                      </svg>Email: {{hotel.email}} <br>
-                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check" viewBox="0 0 16 16">
-                        <path d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.267.267 0 0 1 .02-.022z"/>
-                      </svg>Phone: {{hotel.phone}}
-                </div>
-                <ul class="postcard__tagbox">
-                    <button type="button" class="btn boton_1"><img src="../../../assets/img/lapiz.png" alt="" class="img-icons"></button>
-                    <button type="button" class="btn boton_1"><img src="../../../assets/img/basura.png" alt="" class="img-icons"></button>
-                </ul>
+    <section>
+        <div class="d-flex justify-content-between mt-5">
+            <div>
+                <button class="btn boton_1 ms-5" data-bs-toggle="modal" data-bs-target="#exampleModalAddHotel" type="button">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    Add Hotel
+                </button>
             </div>
-        </article>
-    </div>
-</section>
+            <div></div>
+            <div></div>
+        </div>
+        <div *ngFor="let hotel of arrayHotels" class="container py-1">
+            <div class="h1 text-center text-dark" id="pageHeaderTitle"></div>
+
+            <article class="postcard light blue">
+                <a class="postcard__img_link" [routerLink]="['/profileHotel/' + hotel._id]">
+                    <img class="postcard__img" src="../../../assets/img/Statü Güzelyurt Residence_Manisa.jfif"
+                        alt="Image Title">
+                </a>
+                <div class="postcard__text t-dark">
+                    <h1 class="postcard__title blue"><a
+                            [routerLink]="['/profileHotel/' + hotel._id]">{{hotel.nameHotel}}</a></h1>
+                    <div class="postcard__subtitle small">
+                        <time datetime="2020-05-25 12:00:00">
+                            <i class="fas fa-calendar-alt mr-2"></i>{{hotel.direction}}
+                        </time>
+                    </div>
+                    <div class="postcard__bar"></div>
+                    <div class="postcard__preview-txt">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-check" viewBox="0 0 16 16">
+                            <path
+                                d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.267.267 0 0 1 .02-.022z" />
+                        </svg>Email: {{hotel.email}} <br>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-check" viewBox="0 0 16 16">
+                            <path
+                                d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.267.267 0 0 1 .02-.022z" />
+                        </svg>Phone: {{hotel.phone}}
+                    </div>
+                    <ul class="postcard__tagbox">
+                        <button (click)="getHotel(hotel._id)" data-bs-toggle="modal" data-bs-target="#exampleModalUpdateHotel" type="button" class="btn boton_2"><img src="../../../assets/img/lapiz.png" alt=""
+                                class="img-icons"></button>
+                        <button  (click)="getHotel(hotel._id)" type="button" class="btn boton_2"><img src="../../../assets/img/basura.png" alt=""
+                                class="img-icons"></button>
+                    </ul>
+                </div>
+            </article>
+        </div>
+
+        <!-- MODAL PARA AGREGAR UN HOTEL -->
+        <div class="modal fade" id="exampleModalAddHotel" tabindex="-1" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-lg">
+                <div class="containerModal">
+                    <div class="modal-content">
+                        <div class="contact-box">
+                            <div class="left"></div>
+                            <div class="right">
+                                <div class="position-relative">
+                                    <button type="button"
+                                        class="btn-close position-absolute top-0 start-100 translate-middle"
+                                        data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <form>
+                                    <h2>Hotel data</h2>
+                                    <input [(ngModel)]="this.addHotel.name" name="name" type="text" class="field"
+                                        placeholder="Name Manager">
+                                    <input [(ngModel)]="this.addHotel.username" name="username" type="text"
+                                        class="field" placeholder="Username">
+                                    <input [(ngModel)]="this.addHotel.password" name="password" type="password"
+                                        class="field" placeholder="Password">
+                                    <input [(ngModel)]="this.addHotel.nameHotel" name="nameHotel" type="text"
+                                        class="field" placeholder="Name Hotel">
+                                    <input [(ngModel)]="this.addHotel.direction" name="direction" type="text"
+                                        class="field" placeholder="Direction">
+                                    <input [(ngModel)]="this.addHotel.phone" name="phone" type="text" class="field"
+                                        placeholder="Phone">
+                                    <input [(ngModel)]="this.addHotel.email" name="email" type="email" class="field"
+                                        placeholder="Email">
+                                    <button (click)="createHotel()" class="buttonModalNewUser"
+                                        data-bs-dismiss="modal">Save</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- MODAL PARA ACTUALIZAR UN HOTEL -->
+        <div class="modal fade" id="exampleModalUpdateHotel" tabindex="-1" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-lg">
+                <div class="containerModal">
+                    <div class="modal-content">
+                        <div class="contact-box">
+                            <div class="left"></div>
+                            <div class="right">
+                                <div class="position-relative">
+                                    <button type="button"
+                                        class="btn-close position-absolute top-0 start-100 translate-middle"
+                                        data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <form>
+                                    <h2>Hotel data</h2>                                    
+                                    <input [(ngModel)]="this.updateHotel.nameHotel" name="nameHotel" type="text" class="field" placeholder="Name Hotel">
+                                    <input [(ngModel)]="this.updateHotel.direction" name="direction" type="text" class="field" placeholder="Direction">
+                                    <input [(ngModel)]="this.updateHotel.phone" name="phone" type="text" class="field" placeholder="Phone">
+                                    <input [(ngModel)]="this.updateHotel.email" name="email" type="email" class="field" placeholder="Email">
+                                    <button (click)="updatedHotel()" class="buttonModalNewUser" data-bs-dismiss="modal">Update</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
 </div>

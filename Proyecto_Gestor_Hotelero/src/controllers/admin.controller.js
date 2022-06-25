@@ -147,6 +147,21 @@ exports.getHotels = async (req, res) => {
     }
 }
 
+exports.getHotel = async(req, res)=>{
+    try {
+        const idHotel = req.params.idHotel;
+        const hotelFound = await Hotel.findOne({_id: idHotel});
+        if(!hotelFound){
+            res.status(404).send({message:'Hotel not found'});
+        }else{
+            res.status(200).send({hotelFound});
+        }
+    } catch (err) {
+        console.log(err);
+        return err;
+    }
+}
+
 //FUNCIÓN PARA EDITAR UN HOTEL
 exports.updateHotel = async (req, res) => {
     try {

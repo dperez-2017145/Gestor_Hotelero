@@ -2,7 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { HotelRestService } from 'src/app/services/hotel-rest.service';
 import { NavBarLoginRestService } from 'src/app/services/nav-bar-login-rest.service';
+import {Hotel} from 'src/app/Models/hotel.model';
+import {Event} from 'src/app/Models/event.model';
 import Swal from 'sweetalert2';
+import { Service } from 'src/app/Models/service.model';
 @Component({
   selector: 'app-profile-hotel',
   templateUrl: './profile-hotel.component.html',
@@ -14,15 +17,38 @@ export class ProfileHotelComponent implements OnInit {
   arrayEvents: any = [];
 
   idHotel: any;
+  idEvent: any;
+  idService: any;
+  
+  eventUpdate = {
+    _id: "",
+    name: "",
+    type: "",
+    description: "", 
+    idHotel: ""
+  }
+
+  serviceUpdate = {
+    _id: "",
+    name: "",
+    price: 0,
+    idHotel: ""
+  }
 
   role:any;
+
+  hotel:Hotel;
+  event:Event;
+  service:Service;
 
   constructor(
     public hotelRest: HotelRestService,
     public navbarRest: NavBarLoginRestService,
     public activatedRoute: ActivatedRoute
   ) { 
-    
+    this.hotel = new Hotel("", "", "", "", "", 0, "");
+    this.event = new Event("", "", "", "", ""); 
+    this.service = new Service("", "", 0, "");
   }
 
   ngOnInit(): void {
@@ -33,6 +59,109 @@ export class ProfileHotelComponent implements OnInit {
     this.getEvents();
     this.role = this.navbarRest.getUser().role;
   }
+
+  //FUNCIONES DE EVENTOS
+  
+  getEvents(){
+    this.hotelRest.getEvents(this.idHotel).subscribe({
+      next: (res:any) =>{
+        this.arrayEvents = res.eventsFound
+      },
+      error:(err)=>{
+        Swal.fire({
+          title: err.error.message || err.error,
+          icon: 'error',
+          showConfirmButton: false,
+          timer: 2000
+        });
+      }
+    })
+  }
+  
+  getEvent(idEvent:any){
+    this.hotelRest.getEvent(idEvent).subscribe({
+      next:(res:any)=>{
+        this.eventUpdate.name = res.eventFound.name; 
+        this.eventUpdate.type = res.eventFound.type;
+        this.eventUpdate.description = res.eventFound.description;
+        this.eventUpdate.idHotel = res.eventFound.idHotel;
+        this.eventUpdate._id = res.eventFound._id;        
+      },
+      error: (err)=>{
+        Swal.fire({
+          title: err.error.message || err.error,
+          icon: 'error',
+          showConfirmButton: false,
+          timer: 2000
+        });
+      }
+    })
+  }
+  
+  createEvent(){
+    this.hotelRest.createEvent(this.idHotel, this.event).subscribe({
+      next:(res:any) =>{
+        Swal.fire({
+          title: res.message,
+          icon: 'success',
+          showConfirmButton: false
+        });
+        this.getEvents();
+      },
+      error:(err)=>{
+        Swal.fire({
+          title: err.error.message || err.error,
+          icon: 'error',
+          showConfirmButton: false,
+          timer: 2000
+        });
+      }
+    })
+  }
+  
+  updateEvent(){
+    this.hotelRest.updateEvent(this.eventUpdate._id, this.eventUpdate).subscribe({
+      next:(res:any) =>{
+        Swal.fire({
+          title: res.message,
+          icon: 'success',
+          showConfirmButton: false
+        });
+        this.getEvents();
+      },
+      error: (err)=>{
+        Swal.fire({
+          title: err.error.message || err.error,
+          icon: 'error',
+          showConfirmButton: false,
+          timer: 2000
+        });
+      }
+    })
+  }
+  
+  deleteEvent(){
+    this.hotelRest.deleteEvent(this.eventUpdate._id).subscribe({
+      next:(res:any)=>{
+        this.getEvents();
+        Swal.fire({
+          title: res.message,
+          icon: 'success',
+          showConfirmButton: false
+        });
+      },
+      error:(err)=>{
+        Swal.fire({
+          title: err.error.message || err.error,
+          icon: 'error',
+          showConfirmButton: false,
+          timer: 2000
+        });
+      }
+    })
+  }
+  
+  //FUNCIONES DE SERVICIOS
 
   getServices(){
     this.hotelRest.getServices(this.idHotel).subscribe({
@@ -50,12 +179,78 @@ export class ProfileHotelComponent implements OnInit {
     })
   }
 
-  getEvents(){
-    this.hotelRest.getEvents(this.idHotel).subscribe({
+  getService(idService:any){
+    this.hotelRest.getService(idService).subscribe({
+      next: (res:any)=>{
+        this.serviceUpdate._id = res.serviceFound._id,
+        this.serviceUpdate.name = res.serviceFound.name,
+        this.serviceUpdate.price = res.serviceFound.price,
+        this.serviceUpdate.idHotel = res.serviceFound.idHotel
+      },
+      error: (err)=>{
+        Swal.fire({
+          title: err.error.message || err.error,
+          icon: 'error',
+          showConfirmButton: false,
+          timer: 2000
+        });
+      }
+    })
+  }
+
+  createService(){
+    this.hotelRest.createService(this.idHotel, this.service).subscribe({
       next: (res:any) =>{
-        this.arrayEvents = res.eventsFound
+        Swal.fire({
+          title: res.message,
+          icon: 'success',
+          showConfirmButton: false
+        });
+        this.getServices();
+      },
+      error: (err)=>{
+        Swal.fire({
+          title: err.error.message || err.error,
+          icon: 'error',
+          showConfirmButton: false,
+          timer: 2000
+        });
+      }
+    })
+  }
+
+  updateService(){
+    this.hotelRest.updateService(this.serviceUpdate._id, this.serviceUpdate).subscribe({
+      next: (res:any)=>{
+        Swal.fire({
+          title: res.message,
+          icon: 'success',
+          showConfirmButton: false
+        });
+        this.getServices();
       },
       error:(err)=>{
+        Swal.fire({
+          title: err.error.message || err.error,
+          icon: 'error',
+          showConfirmButton: false,
+          timer: 2000
+        });
+      }
+    })
+  }
+
+  deleteService(){
+    this.hotelRest.deleteService(this.serviceUpdate._id).subscribe({
+      next: (res:any) =>{
+        this.getServices();
+        Swal.fire({
+          title: res.message,
+          icon: 'success',
+          showConfirmButton: false
+        });
+      },
+      error:(err) =>{
         Swal.fire({
           title: err.error.message || err.error,
           icon: 'error',
