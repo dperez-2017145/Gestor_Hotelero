@@ -13,5 +13,6 @@ api.post('/createService/:idHotel', [middleware.isLoged, middleware.isManager], 
 api.put('/updateService/:idService', [middleware.isLoged, middleware.isManager], managerController.updateService);
 api.delete('/deleteService/:idService', [middleware.isLoged, middleware.isManager], managerController.deleteService);
 api.get('/getHotelByManager/:idManager', [middleware.isLoged, middleware.isManager], managerController.getHotelByManager);
+api.get("/getRooms/:idHotel", middleware.isLoged, managerController.getRooms);
 
 module.exports = api;

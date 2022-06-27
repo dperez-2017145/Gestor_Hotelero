@@ -6,6 +6,7 @@ import {Hotel} from 'src/app/Models/hotel.model';
 import {Event} from 'src/app/Models/event.model';
 import Swal from 'sweetalert2';
 import { Service } from 'src/app/Models/service.model';
+import { ManagerRestService } from 'src/app/services/manager-rest.service';
 @Component({
   selector: 'app-profile-hotel',
   templateUrl: './profile-hotel.component.html',
@@ -15,6 +16,7 @@ export class ProfileHotelComponent implements OnInit {
 
   arrayServices: any = [];
   arrayEvents: any = [];
+  arrayRooms: any = [];
 
   idHotel: any;
   idEvent: any;
@@ -44,7 +46,8 @@ export class ProfileHotelComponent implements OnInit {
   constructor(
     public hotelRest: HotelRestService,
     public navbarRest: NavBarLoginRestService,
-    public activatedRoute: ActivatedRoute
+    public activatedRoute: ActivatedRoute,
+    public managerRest: ManagerRestService
   ) { 
     this.hotel = new Hotel("", "", "", "", "", 0, "");
     this.event = new Event("", "", "", "", ""); 
@@ -58,6 +61,7 @@ export class ProfileHotelComponent implements OnInit {
     this.getServices();
     this.getEvents();
     this.role = this.navbarRest.getUser().role;
+    this.getRooms();
   }
 
   //FUNCIONES DE EVENTOS
@@ -259,6 +263,23 @@ export class ProfileHotelComponent implements OnInit {
         });
       }
     })
+  }
+
+  // Metodos correspondientes a la habitacion
+  getRooms(){
+    this.managerRest.getRooms(this.idHotel).subscribe({
+      next: (res:any) =>{
+        this.arrayRooms = res.rooms;
+      },
+      error:(err)=>{
+        Swal.fire({
+          title: err.error.message || err.error,
+          icon: 'error',
+          showConfirmButton: false,
+          timer: 2000
+        });
+      }
+    });
   }
 
 

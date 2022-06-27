@@ -23,6 +23,10 @@ export class ManagerRestService {
     return this.http.get(environment.baseUri + 'manager/getHotelByManager/' + idManager, {headers:this.httpOptions});
   }
 
+  getRooms(idHotel: any){
+    return this.http.get(environment.baseUri + "manager/getRooms/" + idHotel, {headers: this.httpOptions});
+  }
+
 }
 
 

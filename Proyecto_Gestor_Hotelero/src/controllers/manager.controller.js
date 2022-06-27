@@ -36,6 +36,22 @@ exports.createRoom = async (req, res) => {
     }
 }
 
+//Obtener habitaciones de un hotel
+exports.getRooms = async (req, res) => {
+    try {
+        const idHotel = req.params.idHotel;
+        const rooms = await Room.find({idHotel: idHotel});
+        if(rooms){
+            return res.status(200).send({rooms});
+        }else{
+            return res.status(404).send({message: "There is not rooms to show."});
+        }
+    } catch (err) {
+        console.log(err);
+        return err;
+    }
+}
+
 
 
 //FUNCIÓN PARA CREAR UN EVENTO A UN HOTEL

@@ -17,6 +17,8 @@ import { SelectDateComponent } from './components/select-date/select-date.compon
 import { ReservationRoomComponent } from './components/reservation-room/reservation-room.component';
 import { ReservationServiceComponent } from './components/reservation-service/reservation-service.component';
 import { ProfileUserComponent } from './components/profile-user/profile-user.component';
+import { SearchHotelByNamePipe } from './pipes/search-hotel-by-name.pipe';
+import { SearchHotelByDirectionPipe } from './pipes/search-hotel-by-direction.pipe';
 
 @NgModule({
   declarations: [
@@ -31,7 +33,9 @@ import { ProfileUserComponent } from './components/profile-user/profile-user.com
     SelectDateComponent,
     ReservationRoomComponent,
     ReservationServiceComponent,
-    ProfileUserComponent
+    ProfileUserComponent,
+    SearchHotelByNamePipe,
+    SearchHotelByDirectionPipe
   ],
   imports: [
     BrowserModule,

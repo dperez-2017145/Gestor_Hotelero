@@ -11,6 +11,9 @@ import Swal from 'sweetalert2';
 })
 export class HotelsComponent implements OnInit {
 
+  search: string = "";
+  searchDirection: string = "";
+
   arrayHotels: any = [];
   arrayManagers: any =[];
 

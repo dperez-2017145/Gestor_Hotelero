@@ -9,12 +9,12 @@
             <span></span>
             Make a reservation
         </button>
-        <button *ngIf="this.role === 'CLIENT'" class="btn boton_1 ms-3" type="button">
+        <button *ngIf="this.role === 'MANAGER'" class="btn boton_1 ms-3" type="button">
             <span></span>
             <span></span>
             <span></span>
             <span></span>
-                Rooms
+                Add Room
         </button>
     <button *ngIf="this.role === 'MANAGER'" type="button" class="btn boton_1 ms-4" data-bs-toggle="modal" data-bs-target="#exampleModalAddService">
         <span></span>
@@ -76,6 +76,34 @@
         <td *ngIf="this.role === 'MANAGER'">
             <button (click)="this.getEvent(event._id)" type="button" class="btn btn-primary me-3" data-bs-toggle="modal" data-bs-target="#exampleModalUpdateEvent"><img src="../../../assets/img/lapiz.png" alt="" class="img-icons"></button>
             <button (click)="this.getEvent(event._id)" type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModalDeleteEvent"><img src="../../../assets/img/basura.png" alt="" class="img-icons"></button>
+        </td>
+        </tr>
+    </tbody>
+    </table>
+</div>
+
+<div class="table" >
+    
+    <h1>Rooms</h1>
+    <table class="table">
+    <thead style="background-color: #79eb9f;">
+        <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Type</th>
+        <th scope="col">Price</th>
+        <th scope="col">Status</th>
+        <th *ngIf="this.role === 'MANAGER'" scope="col">Actions</th>
+        </tr>
+    </thead>
+    <tbody *ngFor="let room of arrayRooms" class="table-group-divider">
+        <tr class="texto">
+        <td>{{room.name}}</td>
+        <td>{{room.type}}</td>
+        <td>Q {{room.price}}</td>
+        <td>{{room.status}}</td>
+        <td *ngIf="this.role === 'MANAGER'">
+            <button type="button" class="btn btn-primary me-3" data-bs-toggle="modal" data-bs-target="#exampleModalUpdateRoom"><img src="../../../assets/img/lapiz.png" alt="" class="img-icons"></button>
+            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModalDeleteRoom"><img src="../../../assets/img/basura.png" alt="" class="img-icons"></button>
         </td>
         </tr>
     </tbody>
@@ -211,4 +239,48 @@
         </div>
     </div>
 </div>
+</div>
+
+
+<!-- MODAL UPDATE ROOM -->
+<div class="modal fade" id="exampleModalUpdateRoom" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="container">
+            <div class="modal-content">
+                <div class="contact-box">
+                    <div class="left"></div>
+                    <div class="right">
+                        <div class="position-relative">
+                            <button type="button" class="btn-close position-absolute top-0 start-100 translate-middle" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <h2>Update Room</h2>
+                        <input  name="name" type="text" class="field" placeholder="Name">
+                        <input   name="price" type="text" class="field" placeholder="Price">
+                        <button  class="buttonModalNewUser" data-bs-dismiss="modal">Save</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+<!-- MODAL PARA ELIMINAR UN Room -->
+<div class="modal fade" id="exampleModalDeleteRoom" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="container">
+            <div class="modal-content">
+                <div class="contact-box">
+                    <div class="left"></div>
+                    <div class="right">
+                        <div class="position-relative">
+                            <button type="button" class="btn-close position-absolute top-0 start-100 translate-middle" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <h4>Are you sure to delete this room?</h4>
+                        <button class="buttonModalNewUser mb-3" data-bs-dismiss="modal">Yes</button>
+                        <button style="background: #F8333C;" class="buttonModalNewUser" data-bs-dismiss="modal">No</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

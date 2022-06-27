@@ -4,7 +4,7 @@
     <section>
         <div class="d-flex justify-content-between mt-5">
             <div>
-                <button class="btn boton_1 ms-5" data-bs-toggle="modal" data-bs-target="#exampleModalAddHotel" type="button">
+                <button *ngIf="this.role === 'ADMIN'" class="btn boton_1 ms-5" data-bs-toggle="modal" data-bs-target="#exampleModalAddHotel" type="button">
                     <span></span>
                     <span></span>
                     <span></span>
@@ -12,10 +12,18 @@
                     Add Hotel
                 </button>
             </div>
-            <div></div>
+            <div>
+                <div class="input-group mt-3 mb-3">
+                    <input [(ngModel)]="this.search" name="filter" type="text" class="form-control confButton" placeholder="Hotel" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                    <span class="spanSearch input-group-text"><img class="img-spanSeach" src="../../../assets/img/lupa.png" alt="lupa"></span>
+
+                    <input [(ngModel)]="this.searchDirection" name="filter" type="text" class="form-control confButton ms-5" placeholder="Direction" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                    <span class="spanSearch input-group-text"><img class="img-spanSeach" src="../../../assets/img/lupa.png" alt="lupa"></span>
+                </div> 
+            </div>
             <div></div>
         </div>
-        <div *ngFor="let hotel of arrayHotels" class="container py-1">
+        <div *ngFor="let hotel of arrayHotels | searchHotelByName:search | searchHotelByDirection:searchDirection" class="container py-1">
             <div class="h1 text-center text-dark" id="pageHeaderTitle"></div>
 
             <article class="postcard light blue">
@@ -44,7 +52,7 @@
                                 d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.267.267 0 0 1 .02-.022z" />
                         </svg>Phone: {{hotel.phone}}
                     </div>
-                    <ul class="postcard__tagbox">
+                    <ul *ngIf="this.role === 'ADMIN'" class="postcard__tagbox">
                         <button (click)="getHotel(hotel._id)" data-bs-toggle="modal" data-bs-target="#exampleModalUpdateHotel" type="button" class="btn boton_2"><img src="../../../assets/img/lapiz.png" alt=""
                                 class="img-icons"></button>
                         <button  (click)="getHotel(hotel._id)" type="button" class="btn boton_2"><img src="../../../assets/img/basura.png" alt=""
