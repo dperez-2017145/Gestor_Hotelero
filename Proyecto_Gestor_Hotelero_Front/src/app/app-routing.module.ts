@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './components/home/home.component';
 import { HotelsComponent } from './components/hotels/hotels.component';
 import { ProfileHotelComponent } from './components/profile-hotel/profile-hotel.component';
+import { ProfileUserComponent } from './components/profile-user/profile-user.component';
 import { ReservationRoomComponent } from './components/reservation-room/reservation-room.component';
 import { ReservationServiceComponent } from './components/reservation-service/reservation-service.component';
 import { SelectDateComponent } from './components/select-date/select-date.component';
@@ -16,7 +17,8 @@ const routes: Routes = [
   {path:"selectDate", component: SelectDateComponent},
   {path:"reservationRoom", component: ReservationRoomComponent},
   {path:"reservationService", component: ReservationServiceComponent},
-  {path:"profileHotel/:idHotel", component: ProfileHotelComponent}
+  {path:"profileHotel/:idHotel", component: ProfileHotelComponent},
+  {path:"profileUser", component:ProfileUserComponent}
 ];
 
 @NgModule({

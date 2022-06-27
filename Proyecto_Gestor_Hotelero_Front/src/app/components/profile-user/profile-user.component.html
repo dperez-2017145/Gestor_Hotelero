@@ -1,0 +1,27 @@
+<div class="body">
+    <app-nav-bar></app-nav-bar>
+    <div class="mb-4">
+        <div class="row justify-content-center">
+            <div class="card mt-5" style="width: 30rem;">
+                <div class="contenedorImagen">
+                    <h2 class="card-title text-center mt-2">Profile</h2>
+                    <img src="../../../assets/img/client.png" class="card-img-top imagenPerfil mt-3">
+                </div>
+                <div class="card-body">
+                    <p class="card-text">
+                        <input *ngIf="this.role === 'MANAGER' || this.role === 'ADMIN'"[(ngModel)]="this.userAdmin.name" name="name" type="text" class="field" disabled>
+                        <input *ngIf="this.role === 'MANAGER' || this.role === 'ADMIN'"[(ngModel)]="this.userAdmin.username" name="email" type="text" class="field" disabled>
+                        <input *ngIf="this.role === 'MANAGER' || this.role === 'ADMIN'"[(ngModel)]="this.userAdmin.role" name="role" type="text" class="field" disabled>
+                        <!--CLIENTE-->
+                        <input *ngIf="this.role === 'CLIENT'" [(ngModel)]="this.userClient.name" name="name" type="text" class="field" placeholder="Name" id="nameClient">
+                        <input *ngIf="this.role === 'CLIENT'" [(ngModel)]="this.userClient.lastname" name="lastname" type="text" class="field" placeholder="Last Name" id="lastnameClient">
+                        <input *ngIf="this.role === 'CLIENT'" [(ngModel)]="this.userClient.email" name="email" type="text" class="field" placeholder="Email" id="clientEmail">
+                        <input *ngIf="this.role === 'CLIENT'" [(ngModel)]="this.userClient.phone" name="phome" type="text" class="field" placeholder="Phone" id="clientPhone">
+                        <input *ngIf="this.role === 'CLIENT'" [(ngModel)]="this.userClient.username" name="username" type="text" class="field" placeholder="Username" id="clientUsername">
+                        <button *ngIf="this.role === 'CLIENT'" (click)="updateClient()" class="buttonModalNewUser" data-bs-dismiss="modal">Update</button>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

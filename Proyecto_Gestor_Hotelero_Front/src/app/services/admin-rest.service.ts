@@ -21,6 +21,8 @@ export class AdminRestService {
     public hotelRest: HotelRestService
   ) { }
 
+  //FUNCIONES DEL HOTEL
+
   getHotel(idHotel:any){
     return this.http.get(environment.baseUri + "admin/getHotel/" + idHotel, {headers:this.httpOptions});
   }
@@ -34,4 +36,15 @@ export class AdminRestService {
   }
 
   //DELETE HOTEL PENDIENTE
+
+
+  //SERVICIOS DEL MANAGEr
+
+  getManager(idManager:any){
+    return this.http.get(environment.baseUri + "admin/getManager/" + idManager, {headers:this.httpOptions});
+  }
+
+  updateManager(idManager:any, params:{}){
+    return this.http.put(environment.baseUri + "admin/updateManager/" + idManager, params, {headers:this.httpOptions});
+  }
 }

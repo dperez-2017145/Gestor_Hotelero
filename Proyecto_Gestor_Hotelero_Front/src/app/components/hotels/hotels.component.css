@@ -52,8 +52,9 @@
 	margin: 0.5rem;
 }
 .boton_2:hover{
-    border-color: #7c8289;
-    color: #7c8289;
+    background-color: #7c828958;
+	border-color: #ffffff;
+	border-width: 2px;
 }
  .dark {
 	 background: #110f16;

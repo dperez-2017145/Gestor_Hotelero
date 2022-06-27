@@ -16,6 +16,7 @@ import { ClientComponent } from './components/client/client.component';
 import { SelectDateComponent } from './components/select-date/select-date.component';
 import { ReservationRoomComponent } from './components/reservation-room/reservation-room.component';
 import { ReservationServiceComponent } from './components/reservation-service/reservation-service.component';
+import { ProfileUserComponent } from './components/profile-user/profile-user.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { ReservationServiceComponent } from './components/reservation-service/re
     ClientComponent,
     SelectDateComponent,
     ReservationRoomComponent,
-    ReservationServiceComponent
+    ReservationServiceComponent,
+    ProfileUserComponent
   ],
   imports: [
     BrowserModule,

@@ -3,12 +3,19 @@
 <div class="d-flex justify-content-between mt-5">
     <div>
         <button *ngIf="this.role === 'CLIENT'" class="btn boton_1 ms-5" type="button">
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        Make a reservation
-    </button>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            Make a reservation
+        </button>
+        <button *ngIf="this.role === 'CLIENT'" class="btn boton_1 ms-3" type="button">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+                Rooms
+        </button>
     <button *ngIf="this.role === 'MANAGER'" type="button" class="btn boton_1 ms-4" data-bs-toggle="modal" data-bs-target="#exampleModalAddService">
         <span></span>
         <span></span>

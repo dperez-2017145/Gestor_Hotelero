@@ -12,10 +12,12 @@ import Swal from 'sweetalert2';
 export class HotelsComponent implements OnInit {
 
   arrayHotels: any = [];
+  arrayManagers: any =[];
 
   role:any;
 
   idHotel:any;
+  idManager:any;
 
   addHotel = {
     nameHotel: "",
@@ -30,12 +32,18 @@ export class HotelsComponent implements OnInit {
     role:""
   }
 
-  updateHotel ={
+  updateHotel = {
     _id: "",
     nameHotel: "",
     direction:"",
     phone:"",
     email:""
+  }
+
+  updateManager = {
+    _id:"",
+    name:"",
+    username:""
   }
 
   constructor(
@@ -103,6 +111,45 @@ export class HotelsComponent implements OnInit {
 
   updatedHotel(){
     this.adminRest.updateHotel(this.updateHotel._id, this.updateHotel).subscribe({
+      next: (res:any)=>{
+        Swal.fire({
+          title: res.message,
+          icon: 'success',
+          showConfirmButton: false
+        });
+        this.getHotels();
+      },
+      error:(err)=>{
+        Swal.fire({
+          title: err.error.message || err.error,
+          icon: 'error',
+          showConfirmButton: false,
+          timer: 2000
+        });
+      }
+    })
+  }
+
+  getManager(idManager:any){
+    this.adminRest.getManager(idManager).subscribe({
+      next:(res:any)=>{
+        this.updateManager._id = res.managerFound._id;
+        this.updateManager.name = res.managerFound.name;
+        this.updateManager.username = res.managerFound.username;
+      },
+      error:(err)=>{
+        Swal.fire({
+          title: err.error.message || err.error,
+          icon: 'error',
+          showConfirmButton: false,
+          timer: 2000
+        });
+      }
+    })
+  }
+
+  updatedManager(){
+    this.adminRest.updateManager(this.updateManager._id, this.updateManager).subscribe({
       next: (res:any)=>{
         Swal.fire({
           title: res.message,

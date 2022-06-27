@@ -6,6 +6,7 @@ const clientController = require('../controllers/client.controller');
 const middleware = require('../services/middleware');
 
 api.get('/testClientController', clientController.testClientController);
+api.get('/getClient/:idClient', [middleware.isLoged, middleware.isClient], clientController.getClient);
 api.post('/register', clientController.register);
 api.put('/updateClient/:idLoged', [middleware.isLoged, middleware.isClient], clientController.updateClient);
 api.post('/reservation/:idClient/:idHotel');

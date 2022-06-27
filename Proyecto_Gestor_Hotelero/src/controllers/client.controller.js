@@ -42,6 +42,17 @@ exports.register = async(req, res)=>{
     }
 }
 
+exports.getClient = async(req, res)=>{
+    try {
+        const idClient = req.params.idClient;
+        const clientFound = await Client.findOne({_id: idClient});
+        return res.status(200).send({clientFound});
+    } catch (err) {
+        console.log(err);
+        return err;
+    }
+}
+
 //Función para actualizar a un cliente
 exports.updateClient = async(req, res)=>{
     try {

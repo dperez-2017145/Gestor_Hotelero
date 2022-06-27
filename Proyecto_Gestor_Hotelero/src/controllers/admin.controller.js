@@ -197,6 +197,37 @@ exports.updateHotel = async (req, res) => {
     }
 }
 
+//FUNCION PARA OBTENER A VARIOS MANAGERS
+exports.getManagers = async(req, res)=>{
+    try {
+        const managersFound = await Manager.find();
+        if(!managersFound){
+            res.status(404).send({message:'Managers not found'});
+        }else{
+            res.status(200).send({managersFound});
+        }
+    } catch (err) {
+        console.log(err);
+        return err;
+    }
+}
+
+//FUNCION PARA OBTENER A UN MANAGER
+exports.getManager = async(req, res)=>{
+    try {
+        const idManager = req.params.idManager;
+        const managerFound = await Manager.findOne({_id: idManager});
+        if(!managerFound){
+            res.status(404).send({message:'Manager not found'});
+        }else{
+            res.status(200).send({managerFound});
+        }
+    } catch (err) {
+        console.log(err);
+        return err;
+    }
+}
+
 //FUNCIÓN PARA EDITAR UN MANAGER
 exports.updateManager = async (req, res) => {
     try {
