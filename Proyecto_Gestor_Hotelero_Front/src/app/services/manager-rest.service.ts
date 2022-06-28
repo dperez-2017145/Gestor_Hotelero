@@ -27,6 +27,22 @@ export class ManagerRestService {
     return this.http.get(environment.baseUri + "manager/getRooms/" + idHotel, {headers: this.httpOptions});
   }
 
+  getRoom(idRoom:any){
+    return this.http.get(environment.baseUri + "manager/getRoom/" + idRoom, {headers:this.httpOptions});
+  }
+
+  addRoom(idHotel:any, params:{}){
+    return this.http.post(environment.baseUri + "manager/createRoom/" + idHotel, params, {headers:this.httpOptions});
+  }
+
+  updateRoom(idRoom:any, params:{}){
+    return this.http.put(environment.baseUri + "manager/updateRoom/" + idRoom, params, {headers:this.httpOptions});
+  }
+
+  deleteRoom(idRoom:any){
+    return this.http.delete(environment.baseUri + "manager/deleteRoom/" + idRoom, {headers:this.httpOptions});
+  }
+
 }
 
 

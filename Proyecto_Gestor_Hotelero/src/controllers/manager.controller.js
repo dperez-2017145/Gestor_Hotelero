@@ -36,6 +36,56 @@ exports.createRoom = async (req, res) => {
     }
 }
 
+exports.updateRoom = async (req, res) =>{
+    try {
+        const params = req.body;
+        const idRoom = req.params.idRoom;
+        const data = {
+            name: params.name.toUpperCase(),
+            type: params.type,
+            price: params.price,
+            status: params.status
+        }
+        const room = await Room.findOne({_id: idRoom});
+        const msg = dataObligatory(data);
+        if(msg){
+            return res.status(400).send(msg);
+        }else{
+            if(room.name != params.name.toUpperCase()){
+                const roomFound = await Room.findOne({name: params.name.toUpperCase()});
+                if(roomFound){
+                    return res.status(400).send({message: 'This room already exist.'})
+                }else{
+                    const roomUpdated = await Room.findOneAndUpdate({_id: idRoom}, data, {new:true});
+                    return res.status(200).send({message: 'Room updated successfully.', roomUpdated});
+                }
+            }else{
+                    const roomUpdated = await Room.findOneAndUpdate({_id: idRoom}, data, {new:true});
+                    return res.status(200).send({message: 'Room updated successfully.', roomUpdated});
+            }
+        }
+    } catch (err) {
+        console.log(err);
+        return err
+    }
+}
+
+exports.deleteRoom = async (req, res) =>{
+    try{
+        const idRoom = req.params.idRoom;
+        const room = await Room.findOne({_id: idRoom});
+        if(room){
+            const roomDeleted = await Room.findOneAndDelete({_id: idRoom});
+            return res.status(200).send({message: "Room deleted successfully.", roomDeleted});
+        }else{
+            res.status(404).send({message:'Room not found'});
+        }
+    }catch(err){
+        console.log(err);
+        return err;
+    }
+}
+
 //Obtener habitaciones de un hotel
 exports.getRooms = async (req, res) => {
     try {
@@ -45,6 +95,21 @@ exports.getRooms = async (req, res) => {
             return res.status(200).send({rooms});
         }else{
             return res.status(404).send({message: "There is not rooms to show."});
+        }
+    } catch (err) {
+        console.log(err);
+        return err;
+    }
+}
+
+exports.getRoom = async (req, res) =>{
+    try {
+        const idRoom = req.params.idRoom;
+        const roomFound = await Room.findOne({_id: idRoom});
+        if(roomFound){
+            return res.status(200).send({roomFound});
+        }else{
+            return res.status(404).send({message: 'Room not found.'});
         }
     } catch (err) {
         console.log(err);

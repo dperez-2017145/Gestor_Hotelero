@@ -7,6 +7,7 @@ import {Event} from 'src/app/Models/event.model';
 import Swal from 'sweetalert2';
 import { Service } from 'src/app/Models/service.model';
 import { ManagerRestService } from 'src/app/services/manager-rest.service';
+import { Room } from 'src/app/Models/room.model';
 @Component({
   selector: 'app-profile-hotel',
   templateUrl: './profile-hotel.component.html',
@@ -21,6 +22,7 @@ export class ProfileHotelComponent implements OnInit {
   idHotel: any;
   idEvent: any;
   idService: any;
+  idRoom:any;
   
   eventUpdate = {
     _id: "",
@@ -37,11 +39,21 @@ export class ProfileHotelComponent implements OnInit {
     idHotel: ""
   }
 
+  roomUpdated = {
+    _id: "",
+    name:"",
+    type:"",
+    price: 0,
+    status: true,
+    idHotel:""
+  }
+
   role:any;
 
   hotel:Hotel;
   event:Event;
   service:Service;
+  room:Room;
 
   constructor(
     public hotelRest: HotelRestService,
@@ -52,6 +64,7 @@ export class ProfileHotelComponent implements OnInit {
     this.hotel = new Hotel("", "", "", "", "", 0, "");
     this.event = new Event("", "", "", "", ""); 
     this.service = new Service("", "", 0, "");
+    this.room = new Room("", "", "", 0, true, "");
   }
 
   ngOnInit(): void {
@@ -280,6 +293,90 @@ export class ProfileHotelComponent implements OnInit {
         });
       }
     });
+  }
+
+  getRoom(idRoom:any){
+    this.managerRest.getRoom(idRoom).subscribe({
+      next:(res:any) =>{
+        this.roomUpdated._id = res.roomFound._id;
+        this.roomUpdated.name = res.roomFound.name;
+        this.roomUpdated.type = res.roomFound.type;
+        this.roomUpdated.price = res.roomFound.price;
+        this.roomUpdated.status = res.roomFound.status;
+        this.roomUpdated.idHotel = res.roomFound.idHotel;
+      },
+      error:(err)=>{
+        Swal.fire({
+          title: err.error.message || err.error,
+          icon: 'error',
+          showConfirmButton: false,
+          timer: 2000
+        });
+      }
+    })
+  }
+
+  createRoom(){
+    this.managerRest.addRoom(this.idHotel, this.room).subscribe({
+      next:(res:any)=>{
+        Swal.fire({
+          title: res.message,
+          icon: 'success',
+          showConfirmButton: false
+        });
+        this.getRooms();
+      },
+      error: (err)=>{
+        Swal.fire({
+          title: err.error.message || err.error,
+          icon: 'error',
+          showConfirmButton: false,
+          timer: 2000
+        });
+      }
+    })
+  }
+
+  updateRoom(){
+    this.managerRest.updateRoom(this.roomUpdated._id, this.roomUpdated).subscribe({
+      next: (res:any)=>{
+        Swal.fire({
+          title: res.message,
+          icon: 'success',
+          showConfirmButton: false
+        });
+        this.getRooms();
+      },
+      error:(err)=>{
+        Swal.fire({
+          title: err.error.message || err.error,
+          icon: 'error',
+          showConfirmButton: false,
+          timer: 2000
+        });
+      }
+    })
+  }
+
+  deleteRoom(){
+    this.managerRest.deleteRoom(this.roomUpdated._id).subscribe({
+      next: (res:any) =>{
+        this.getRooms();
+        Swal.fire({
+          title: res.message,
+          icon: 'success',
+          showConfirmButton: false
+        });
+      },
+      error:(err) =>{
+        Swal.fire({
+          title: err.error.message || err.error,
+          icon: 'error',
+          showConfirmButton: false,
+          timer: 2000
+        });
+      }
+    })
   }
 
 
