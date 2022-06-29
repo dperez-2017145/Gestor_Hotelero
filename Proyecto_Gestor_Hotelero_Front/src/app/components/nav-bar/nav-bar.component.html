@@ -8,6 +8,7 @@
 		</button>
 		<ul class="dropdown-menu me-2" aria-labelledby="dropdownMenuButton1">
 			<li routerLink="/profileUser" ><a class="dropdown-item" >Profile</a></li>
+			<li *ngIf="this.role === 'ADMIN'" routerLink="/clients"><a class="dropdown-item" >Users</a></li>
 			<li (click)="logOut()"><a class="dropdown-item" >Log Out</a></li>
 		</ul>
 	</div>

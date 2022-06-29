@@ -26,4 +26,8 @@ export class ClientRestService {
     return this.http.put(environment.baseUri + "client/updateClient/" + idClient, params, {headers:this.httpOptions});
   }
 
+  getManagersAndClients(){
+    return this.http.get(environment.baseUri + "admin/getManagersAndClients", {headers: this.httpOptions});
+  }
+
 }
