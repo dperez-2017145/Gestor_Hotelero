@@ -6,6 +6,24 @@ h2 {
     color: #fff;
 }
 
+.background{
+    position: absolute; 
+    left: 0px;
+    width: 100vw; 
+    height:100vh;
+    background-image: url('../../../assets/img/fondo.jfif');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    justify-content: center;
+    align-items: center;
+	overflow: auto;
+	overflow-x: hidden;
+}
+
+.body{
+    margin-top: 8rem;
+}
 
 .container {
     background-color: #B3B6C3;

@@ -1,36 +1,26 @@
-<div class="body">
 
-    <h1 class="text-center mt-3">Habitación</h1>
-
-
-
-    <div class="container mt-4">
-        <h2> Seleccione la(s) habitaciones que desee:</h2>
-
-
-        <div class="align">
-
-            <select class="mt-4">
-                <option selected class="selected">Seleccione el Hotel</option>
-                <option>Ejemplo</option>
-                <option>Ejemplo</option>
-                <option>Ejemplo</option>
-                <option>Ejemplo</option>
-                <option>Ejemplo</option>
-            </select>
-        </div>
-
-
-        <div class="align mt-4">
-            <div class="options">
-                <button type="button" class="btn btn-secondary me-5">Agregar</button>
+<div class="background">
+    <app-nav-bar></app-nav-bar>
+    <div class="body">
+        <div class="container mt-5">
+            <h2> Seleccione la habitación que desee reservar</h2>
+            
+            <div class="align">
+                <div>
+                    <select [(ngModel)]="this.idRoom" class="mt-4">
+                        <option *ngFor="let room of arrayRooms" value="{{room._id}}">{{room.name}} <span>|</span> Q.{{room.price}}</option>
+                    </select>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down-fill" viewBox="0 0 16 16">
+                        <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
+                      </svg>
+                </div>
             </div>
-            <div class="options">
-                <button type="button" class="btn btn-success">Siguiente</button>
+
+            <div class="align mt-4">
+                <div class="options">
+                    <button (click)="updateRoom()" type="button" class="btn btn-success">Siguiente</button>
+                </div>
             </div>
         </div>
-
-
     </div>
-
 </div>

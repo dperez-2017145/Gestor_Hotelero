@@ -15,9 +15,9 @@ const routes: Routes = [
   {path:'home', component:HomeComponent},
   {path:'hotels', component:HotelsComponent},
   {path:'user', component:UserComponent},
-  {path:"selectDate", component: SelectDateComponent},
-  {path:"reservationRoom", component: ReservationRoomComponent},
-  {path:"reservationService", component: ReservationServiceComponent},
+  {path:"selectDate/:idReservation/:idRoom", component: SelectDateComponent},
+  {path:"reservationRoom/:idReservation/:idHotel", component: ReservationRoomComponent},
+  {path:"reservationService/:idReservation", component: ReservationServiceComponent},
   {path:"profileHotel/:idHotel", component: ProfileHotelComponent},
   {path:"profileUser", component:ProfileUserComponent},
   {path:"clients", component:ClientComponent}

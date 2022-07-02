@@ -19,6 +19,7 @@ import { ReservationServiceComponent } from './components/reservation-service/re
 import { ProfileUserComponent } from './components/profile-user/profile-user.component';
 import { SearchHotelByNamePipe } from './pipes/search-hotel-by-name.pipe';
 import { SearchHotelByDirectionPipe } from './pipes/search-hotel-by-direction.pipe';
+import { HotelGraphicComponent } from './components/hotel-graphic/hotel-graphic.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { SearchHotelByDirectionPipe } from './pipes/search-hotel-by-direction.pi
     ReservationServiceComponent,
     ProfileUserComponent,
     SearchHotelByNamePipe,
-    SearchHotelByDirectionPipe
+    SearchHotelByDirectionPipe,
+    HotelGraphicComponent
   ],
   imports: [
     BrowserModule,

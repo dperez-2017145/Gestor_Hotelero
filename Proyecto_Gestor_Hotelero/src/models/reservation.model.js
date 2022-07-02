@@ -12,11 +12,10 @@ const reservationSchema = mongoose.Schema({
         service: {
             idService: {type: mongoose.Schema.ObjectId, ref: "HotelService"},
             name: String,
-            price: Number,
-            subTotal: Number
+            price: Number
         }
     }],
-    status: Boolean,
+    days: Number,
     total: Number
 });
 

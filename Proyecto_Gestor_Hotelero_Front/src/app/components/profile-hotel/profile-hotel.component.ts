@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { HotelRestService } from 'src/app/services/hotel-rest.service';
 import { NavBarLoginRestService } from 'src/app/services/nav-bar-login-rest.service';
 import {Hotel} from 'src/app/Models/hotel.model';
@@ -8,6 +8,7 @@ import Swal from 'sweetalert2';
 import { Service } from 'src/app/Models/service.model';
 import { ManagerRestService } from 'src/app/services/manager-rest.service';
 import { Room } from 'src/app/Models/room.model';
+import { ClientRestService } from 'src/app/services/client-rest.service';
 @Component({
   selector: 'app-profile-hotel',
   templateUrl: './profile-hotel.component.html',
@@ -23,6 +24,7 @@ export class ProfileHotelComponent implements OnInit {
   idEvent: any;
   idService: any;
   idRoom:any;
+  idReservation: any;
   
   eventUpdate = {
     _id: "",
@@ -48,6 +50,10 @@ export class ProfileHotelComponent implements OnInit {
     idHotel:""
   }
 
+  reservation = {
+
+  }
+
   role:any;
 
   hotel:Hotel;
@@ -59,7 +65,9 @@ export class ProfileHotelComponent implements OnInit {
     public hotelRest: HotelRestService,
     public navbarRest: NavBarLoginRestService,
     public activatedRoute: ActivatedRoute,
-    public managerRest: ManagerRestService
+    public managerRest: ManagerRestService,
+    public clientRest: ClientRestService,
+    public router: Router
   ) { 
     this.hotel = new Hotel("", "", "", "", "", 0, "");
     this.event = new Event("", "", "", "", ""); 
@@ -377,6 +385,23 @@ export class ProfileHotelComponent implements OnInit {
         });
       }
     })
+  }
+
+  createReservation(){
+    this.clientRest.createReservation(this.navbarRest.getUser()._id, this.idHotel, this.reservation).subscribe({
+      next: (res: any) => {
+        this.idReservation = res.reservation._id;
+        return this.router.navigateByUrl("/reservationRoom/" + this.idReservation + "/" + this.idHotel);
+      },
+      error: (err) => {
+        Swal.fire({
+          title: err.error.message || err.error,
+          icon: 'error',
+          showConfirmButton: false,
+          timer: 2000
+        });
+      }
+    });
   }
 
 

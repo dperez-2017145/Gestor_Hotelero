@@ -7,6 +7,12 @@ const roomSchema = mongoose.Schema({
     type: String,
     price: Number,
     status: Boolean,
+    dates: [{
+        date: {
+            startDate: Date,
+            finishDate: Date
+        }
+    }],
     idHotel: {type: mongoose.Schema.ObjectId, ref:'Hotel'}
 });
 

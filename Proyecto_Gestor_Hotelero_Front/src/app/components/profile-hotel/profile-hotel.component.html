@@ -2,28 +2,28 @@
 <app-nav-bar></app-nav-bar>
 <div class="d-flex justify-content-between mt-5">
     <div>
-        <button *ngIf="this.role === 'CLIENT'" class="btn boton_1 ms-5" type="button">
+        <button (click)="createReservation()" *ngIf="this.role === 'CLIENT'" class="btn btn-secondary ms-5" type="button">
             <span></span>
             <span></span>
             <span></span>
             <span></span>
             Make a reservation
         </button>
-        <button *ngIf="this.role === 'MANAGER'" class="btn boton_1 ms-3" type="button" data-bs-toggle="modal" data-bs-target="#exampleModalCreateRoom">
+        <button *ngIf="this.role === 'MANAGER'" class="btn btn-secondary ms-3" type="button" data-bs-toggle="modal" data-bs-target="#exampleModalCreateRoom">
             <span></span>
             <span></span>
             <span></span>
             <span></span>
                 Add Room
         </button>
-    <button *ngIf="this.role === 'MANAGER'" type="button" class="btn boton_1 ms-4" data-bs-toggle="modal" data-bs-target="#exampleModalAddService">
+    <button *ngIf="this.role === 'MANAGER'" type="button" class="btn btn-secondary ms-4" data-bs-toggle="modal" data-bs-target="#exampleModalAddService">
         <span></span>
         <span></span>
         <span></span>
         <span></span>
         Add Service 
     </button>
-    <button *ngIf="this.role === 'MANAGER'" type="button" class="btn boton_1 ms-4" data-bs-toggle="modal" data-bs-target="#exampleModalAddEvent" type="button">
+    <button *ngIf="this.role === 'MANAGER'" type="button" class="btn btn-secondary ms-4" data-bs-toggle="modal" data-bs-target="#exampleModalAddEvent" type="button">
         <span></span>
         <span></span>
         <span></span>

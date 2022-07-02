@@ -30,3 +30,16 @@ exports.dencryptPassword = async (password, hash)=>{
         return err;
     }
 }
+
+exports.getRange = (f1, f2, f3) => {
+    try {
+        if(f3.getTime() >= f1.getTime() && f3.getTime() <= f2.getTime()){
+            return true;
+        }else{
+            return false;
+        }
+    } catch (err) {
+        console.log(err);
+        return err;
+    }
+}
