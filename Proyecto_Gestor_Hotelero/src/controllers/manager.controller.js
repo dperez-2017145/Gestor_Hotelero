@@ -4,6 +4,8 @@ const Room = require("../models/room.model");
 const Event = require("../models/event.model");
 const Service = require('../models/hotelService.model');
 const Hotel = require("../models/hotel.model");
+const Reservation = require("../models/reservation.model");
+const Bill = require("../models/bill.model");
 
 //FUNCIÓN PARA CREAR UNA HABITACIÓN ASIGNADA A UN HOTEL.
 exports.createRoom = async (req, res) => {
@@ -289,6 +291,54 @@ exports.getHotelByManager = async(req, res)=>{
         }else{
             res.status(200).send({hotelFound});
         }
+    } catch (err) {
+        console.log(err);
+        return err;
+    }
+}
+
+//FUNCION PARA OBTENER TODAS LAS RESERVACIONES QUE TIENE UN HOTEL   
+exports.getReservationsByHotel = async (req, res) => {
+    try {
+        const idHotel = req.params.idHotel;
+        const reservations = await Reservation.find({idHotel: idHotel});
+        return res.status(200).send({reservations});
+    } catch (err) {
+        console.log(err);
+        return err;
+    }
+}
+
+exports.generateBill = async (req, res) => {
+    try {
+        const idReservation = req.params.idReservation;
+        const reservation = await Reservation.findOne({_id: idReservation}).populate('idClient').populate('idHotel').populate('room');
+        const data = {
+            dateBill: new Date(),
+            startDate: reservation.startDate,
+            finishDate: reservation.finishDate,
+            clientName: reservation.idClient.name + " " + reservation.idClient.lastname,
+            hotelName: reservation.idHotel.nameHotel,
+            room: reservation.room.name,
+            services: reservation.services,
+            total: reservation.total,
+            days: reservation.days
+        }
+        let bill = new Bill(data);
+        await bill.save();
+        const reservationUpdated = await Reservation.findOneAndUpdate({_id: idReservation}, {status: true}, {new: true});
+        return res.status(200).send({bill, message: "Bill generated."});
+    } catch (err) {
+        console.log(err);
+        return err;
+    }
+}
+
+exports.getReservationsHotel = async (req, res) => {
+    try {
+        const idHotel = req.params.idHotel;
+        const reservations = await Reservation.find({idHotel: idHotel, status: false}).populate('idClient').populate('idHotel').populate('room');
+        return res.status(200).send({reservations});
     } catch (err) {
         console.log(err);
         return err;

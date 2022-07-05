@@ -30,6 +30,13 @@
         <span></span>
         Add Event 
     </button>
+    <button *ngIf="this.role === 'MANAGER'" (click) = "seeReservation()"  class="btn btn-secondary ms-4" type="button">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        See Reservations
+    </button>
     </div>
     <div></div>
     <div></div>

@@ -18,6 +18,8 @@ export class SelectDateComponent implements OnInit {
     finishDate: ""
   }
 
+  arrayDates: any = [];
+
   constructor(
     public clientRest: ClientRestService,
     public activatedRoute: ActivatedRoute,
@@ -29,6 +31,7 @@ export class SelectDateComponent implements OnInit {
       this.idReservation = idRuta.get("idReservation");
       this.idRoom = idRuta.get("idRoom");
     });
+    this.getDates();
   }
 
   pushDate(){
@@ -43,6 +46,20 @@ export class SelectDateComponent implements OnInit {
           showConfirmButton: false,
           timer: 2000
         });
+      }
+    });
+  }
+
+  getDates(){
+    this.clientRest.getDates(this.idRoom).subscribe({
+      next: (res: any) => {
+        this.arrayDates = res.room.dates;
+        console.log(this.arrayDates);
+        
+      },
+      error: (err) => {
+        console.log(err);
+        
       }
     });
   }

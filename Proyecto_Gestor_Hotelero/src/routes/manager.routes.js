@@ -23,5 +23,8 @@ api.put('/updateService/:idService', [middleware.isLoged, middleware.isManager],
 api.delete('/deleteService/:idService', [middleware.isLoged, middleware.isManager], managerController.deleteService);
 
 api.get('/getHotelByManager/:idManager', [middleware.isLoged, middleware.isManager], managerController.getHotelByManager);
+api.get("/getReservationsByHotel/:idHotel", middleware.isLoged, managerController.getReservationsByHotel);
+api.post("/generateBill/:idReservation", middleware.isLoged, managerController.generateBill);
+api.get("/getReservationsHotel/:idHotel", middleware.isLoged, managerController.getReservationsHotel);
 
 module.exports = api;

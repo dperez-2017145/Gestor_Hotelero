@@ -1,6 +1,25 @@
 <div class="background">
     <app-nav-bar></app-nav-bar>
     <body>
+    <div class="container text-center">
+        <section  class="ms-3 mt-4 me-3" style="max-width: 100%;">
+            
+          <div class="card testimonial-card mt-1 mb-2">
+            <div class="card-up aqua-gradient"></div>
+            
+            <div class="card-body text-center">
+              <h4 class="card-title font-weight-bold">Busy Dates</h4>
+              <hr>
+                <ul *ngFor="let dates of arrayDates">
+                    <li>{{dates.date.startDate | date:'medium':'GMT'}} - {{dates.date.finishDate | date:'medium':'GMT'}}</li>
+                    <hr>
+                </ul>
+            </div>
+          </div>
+          
+        </section>
+      </div>
+    
         <div class="block">
             <div class="date">
                 <h2 class="mb-3">Start date:</h2>

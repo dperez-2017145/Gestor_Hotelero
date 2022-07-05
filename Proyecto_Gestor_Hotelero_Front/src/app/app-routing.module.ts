@@ -7,6 +7,7 @@ import { ProfileHotelComponent } from './components/profile-hotel/profile-hotel.
 import { ProfileUserComponent } from './components/profile-user/profile-user.component';
 import { ReservationRoomComponent } from './components/reservation-room/reservation-room.component';
 import { ReservationServiceComponent } from './components/reservation-service/reservation-service.component';
+import { ReservationsUserComponent } from './components/reservations-user/reservations-user.component';
 import { SelectDateComponent } from './components/select-date/select-date.component';
 import { UserComponent } from './components/user/user.component';
 
@@ -20,7 +21,9 @@ const routes: Routes = [
   {path:"reservationService/:idReservation", component: ReservationServiceComponent},
   {path:"profileHotel/:idHotel", component: ProfileHotelComponent},
   {path:"profileUser", component:ProfileUserComponent},
-  {path:"clients", component:ClientComponent}
+  {path:"clients", component:ClientComponent},
+  {path:"reservationsUser", component:ReservationsUserComponent},
+  {path:"reservationsUser/:idHotel", component:ReservationsUserComponent}
 ];
 
 @NgModule({

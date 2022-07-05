@@ -106,11 +106,24 @@ exports.createReservation = async (req, res) => {
             idClient: idClient,
             idHotel: idHotel,
             services: [],
-            total:0
+            total:0,
+            status: false
         }
         let reservation = new Reservation(data);
         await reservation.save();
         return res.status(200).send({message: "Reservation created successfully.", reservation});
+    } catch (err) {
+        console.log(err);
+        return err;
+    }
+}
+
+//FUNCION PARA OBTENER UNA RESERVACION POR MEDIO DEL ID
+exports.getReservation = async (req, res) => {
+    try {
+        const idReservation = req.params.idReservation;
+        const reservation = await Reservation.findOne({_id: idReservation});
+        return res.status(200).send({reservation});
     } catch (err) {
         console.log(err);
         return err;
@@ -295,6 +308,29 @@ exports.cancelReservation = async (req, res) => {
         
         //const reservationDeleted = await Reservation.findOneAndDelete({_id: idReservation});
         return res.status(200).send({message: "Reservation canceled!"});
+    } catch (err) {
+        console.log(err);
+        return err;
+    }
+}
+
+//FUNCION PARA OBTENER TODAS LAS RESERVACION QUE HA HECHO UN CLIENTE
+exports.getReservations = async (req, res) => {
+    try {
+        const idClient = req.params.idClient;
+        const reservations = await Reservation.find({idClient: idClient}).populate('room').populate('services').populate('idHotel');
+        return res.status(200).send({reservations});
+    } catch (err) {
+        console.log(err);
+        return err;
+    }
+}
+
+exports.getDates = async (req, res) => {
+    try {
+        const idRoom = req.params.idRoom;
+        const room = await Room.findOne({_id: idRoom});
+        return res.status(200).send({room});
     } catch (err) {
         console.log(err);
         return err;

@@ -1,0 +1,64 @@
+<div class="background">
+    <app-nav-bar></app-nav-bar>
+
+    <div class="row">
+        <section *ngFor="let reservation of arrayReservations" class="mx-auto my-5 mb-5" style="max-width: 23rem;">
+            
+          <div class="card">
+            <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
+              <img src="../../../assets/img/reservacion.jpg" class="img-fluid" />
+              <a href="#!">
+                <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
+              </a>
+            </div>
+            <div class="card-body">
+              <div class="carta align-items-center">
+
+                <h4 *ngIf="this.role === 'CLIENT'" class="card-title font-weight-bold">{{reservation.idHotel.nameHotel}}</h4>
+                <h4 class="card-title font-weight-bold">{{reservation.idClient.name}}  {{reservation.idClient.lastname}}</h4>
+               
+                <button (click)="generateBill(reservation._id)" *ngIf="this.role === 'MANAGER'" type="button" class="btn btn-success">Generate Bill</button>
+              </div>
+              
+              <hr>
+              <h5 class="text-center"><a>{{reservation.room.name}} | Q. {{reservation.room.price}}</a></h5>
+              <ul class="list-unstyled list-inline mb-0 text-center">
+                <li class="list-inline-item me-0">
+                  <i class="fas fa-star text-warning fa-xs"> </i>
+                </li>
+                <li class="list-inline-item me-0">
+                  <i class="fas fa-star text-warning fa-xs"></i>
+                </li>
+                <li class="list-inline-item me-0">
+                  <i class="fas fa-star text-warning fa-xs"></i>
+                </li>
+                <li class="list-inline-item me-0">
+                  <i class="fas fa-star text-warning fa-xs"></i>
+                </li>
+                <li class="list-inline-item">
+                  <i class="fas fa-star-half-alt text-warning fa-xs"></i>
+                </li>
+                <li class="list-inline-item">
+                  <p class="text-muted">{{reservation.startDate | date:'medium':'GMT'}} <br> ‍‍‍‍‍- <br> {{reservation.finishDate | date:'medium':'GMT'}}</p>
+                </li>
+              </ul>
+              <p class="mb-2"><strong>Services Reservation</strong></p>
+              <p class="card-text">
+                <ul *ngFor="let service of reservation.services">
+                    <li>{{service.service.name}} | Q. {{service.service.price}}</li>
+                </ul>
+                
+              
+              <hr class="my-4" />
+              <p class="lead"><strong>Total Reservation</strong></p>
+              <ul class="list-unstyled list-inline d-flex justify-content-between">
+                <li class="list-inline-item me-0">
+                  <div class="chip me-0">Q. {{reservation.total}}</div>
+                </li>
+              </ul>
+            </div>
+          </div>
+          
+        </section>
+      </div>
+</div>

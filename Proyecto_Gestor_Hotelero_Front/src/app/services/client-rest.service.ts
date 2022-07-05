@@ -47,8 +47,30 @@ export class ClientRestService {
     return this.http.put(environment.baseUri + "client/pushDate/" + idReservation + "/" + idRoom, params, {headers: this.httpOptions});
   }
 
-  pushServices(idReservation: any, params: any){
-    return this.http.put(environment.baseUri + "client/pushServices/" + idReservation, params, {headers: this.httpOptions});
+  getReservation(idReservation: any){
+    return this.http.get(environment.baseUri + "client/getReservation/" + idReservation, {headers: this.httpOptions});
+  }
+
+  getServices(idHotel: any){
+    return this.http.get(environment.baseUri + "hotel/getServices/" + idHotel, {headers: this.httpOptions});
+  }
+
+  pushServices(idReservation: any, idService: any){
+    let body = JSON.stringify({idService});
+    return this.http.put(environment.baseUri + "client/pushServices/" + idReservation, body, {headers: this.httpOptions});
+  }
+
+  confirmateReservation(idReservation: any, params: any){
+    let body = JSON.stringify({params});
+    return this.http.put(environment.baseUri + "client/confirmateReservation/" + idReservation, body, {headers: this.httpOptions});
+  }
+
+  getReservations(idClient: any){
+    return this.http.get(environment.baseUri + "client/getReservations/" + idClient, {headers: this.httpOptions});
+  }
+
+  getDates(idRoom: any){
+    return this.http.get(environment.baseUri + "client/getDates/"+idRoom, {headers: this.httpOptions});
   }
 
 }

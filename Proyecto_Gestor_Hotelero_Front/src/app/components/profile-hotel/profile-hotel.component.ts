@@ -404,6 +404,8 @@ export class ProfileHotelComponent implements OnInit {
     });
   }
 
-
+  seeReservation(){
+    this.router.navigateByUrl("/reservationsUser/"+this.idHotel);
+  }
 
 }

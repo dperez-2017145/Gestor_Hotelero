@@ -43,6 +43,14 @@ export class ManagerRestService {
     return this.http.delete(environment.baseUri + "manager/deleteRoom/" + idRoom, {headers:this.httpOptions});
   }
 
+  getReservationsHotel(idHotel: any){
+    return this.http.get(environment.baseUri + "manager/getReservationsHotel/" + idHotel, {headers:this.httpOptions});
+  }
+
+  generateBill(idReservation: any, params: {}){
+    return this.http.post(environment.baseUri + "manager/generateBill/" + idReservation, params, {headers: this.httpOptions});
+  }
+
 }
 
 
