@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ClientRestService } from 'src/app/services/client-rest.service';
 import { ManagerRestService } from 'src/app/services/manager-rest.service';
 import { NavBarLoginRestService } from 'src/app/services/nav-bar-login-rest.service';
@@ -15,6 +15,7 @@ export class ReservationsUserComponent implements OnInit {
   idClient: any;
   idhotel: any;
   role: any;
+  idReservation: any;
 
   arrayReservations: any;
   arrayServices: any;
@@ -27,7 +28,8 @@ export class ReservationsUserComponent implements OnInit {
     public clientRest: ClientRestService,
     public navBarRest: NavBarLoginRestService,
     public managerRest: ManagerRestService,
-    public activatedRoute: ActivatedRoute
+    public activatedRoute: ActivatedRoute,
+    public router: Router
   ) { }
 
   ngOnInit(): void {
@@ -84,6 +86,26 @@ export class ReservationsUserComponent implements OnInit {
           showConfirmButton: false,
           timer: 2000
         });
+      }
+    });
+  }
+
+  catchId(idReservation: any){
+    return this.idReservation = idReservation;
+  }
+
+  cancelReservation(idReservation: any){
+    this.clientRest.cancelReservation(idReservation, this.params).subscribe({
+      next: (res: any) => {
+        Swal.fire({
+          title: res.message,
+          icon: 'success',
+          showConfirmButton: true
+        });
+        return this.router.navigateByUrl("/hotels");
+      },
+      error: (err) => {
+        console.log(err);
       }
     });
   }

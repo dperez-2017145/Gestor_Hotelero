@@ -27,4 +27,6 @@ api.get("/getReservationsByHotel/:idHotel", middleware.isLoged, managerControlle
 api.post("/generateBill/:idReservation", middleware.isLoged, managerController.generateBill);
 api.get("/getReservationsHotel/:idHotel", middleware.isLoged, managerController.getReservationsHotel);
 
+api.get("/getPeople/:idManager", [middleware.isLoged, middleware.isManager], managerController.getPeople);
+
 module.exports = api;

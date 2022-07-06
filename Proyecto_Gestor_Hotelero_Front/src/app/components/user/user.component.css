@@ -134,3 +134,24 @@ h1 {
     border-width: 2px;
     font-style: bold;
   }
+
+  .confButton{
+    border: 2px solid #457b9d;
+    padding: 0.5rem;
+}
+
+.spanSearch{
+    background-color: #457b9d;
+    border-color: #457b9d;
+}
+
+.img-spanSeach{
+    height: 1.75rem;
+}
+
+.spanInfo{
+    color: #000000;
+    display: flex;
+    align-items: flex-start;
+    font-size: 1rem;
+}

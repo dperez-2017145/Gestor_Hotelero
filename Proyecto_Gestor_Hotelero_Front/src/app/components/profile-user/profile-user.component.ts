@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ClientRestService } from 'src/app/services/client-rest.service';
 import { NavBarLoginRestService } from 'src/app/services/nav-bar-login-rest.service';
 import Swal from 'sweetalert2';
@@ -29,7 +30,8 @@ export class ProfileUserComponent implements OnInit {
 
   constructor(
     public navBarRest: NavBarLoginRestService,
-    public clientRest: ClientRestService
+    public clientRest: ClientRestService,
+    public router: Router
   ) { }
 
   ngOnInit(): void {
@@ -86,6 +88,28 @@ export class ProfileUserComponent implements OnInit {
         });
       }
     })
+  }
+
+  deleteAccount(){
+    this.clientRest.deleteAccount(this.navBarRest.getUser()._id).subscribe({
+      next: (res:any)=>{
+        Swal.fire({
+          title: res.message,
+          icon: 'success',
+          showConfirmButton: true
+        });
+        this.router.navigateByUrl("");
+        localStorage.clear();
+      },
+      error:(err)=>{
+        Swal.fire({
+          title: err.error.message || err.error,
+          icon: 'error',
+          showConfirmButton: false,
+          timer: 2000
+        });
+      }
+    });
   }
 
 }

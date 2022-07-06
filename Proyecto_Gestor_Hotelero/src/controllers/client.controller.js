@@ -295,6 +295,38 @@ exports.confirmateReservation = async (req, res) => {
     }
 }
 
+//FUNCION PARA ELIMINAR UNA CUENTA
+exports.deleteAccount = async (req, res) => {
+    try {
+        const idClient = req.params.idClient;
+        const reservations = await Reservation.find({idClient: idClient});
+        let reservationsNew = Object.values(reservations);
+        for(let i = 0; i < reservationsNew.length; i++){
+            var startReservation = reservationsNew[i].startDate;
+            var finalReservation = reservationsNew[i].finishDate;
+            var idRoom = reservationsNew[i].room;
+            const room = await Room.findOne({_id: idRoom});
+            const arrayDates = Object.values(room.dates);
+            arrayDates.forEach((item) => {
+                //ESTOS VIENEN DE LA DB
+                var start = item.date.startDate;
+                var final = item.date.finishDate;
+                
+                if(start.getTime() == startReservation.getTime() && final.getTime() == finalReservation.getTime()){
+                    arrayDates.splice(arrayDates.indexOf(item), 1);
+                }
+            });
+            const roomUpdated = await Room.findOneAndUpdate({_id: idRoom}, {dates: arrayDates}, {new: true});
+            const reservationDeleted = await Reservation.findOneAndDelete({_id: reservationsNew[i]._id});
+            const clientDeleted = await Client.findOneAndDelete({_id: idClient});
+        }
+        return res.status(200).send({message: "Account Deleted"});
+    } catch (err) {
+        console.log(err);
+        return err;
+    }
+}
+
 //FUNCIÓN PARA CANCELAR UNA RESERVACION 
 exports.cancelReservation = async (req, res) => {
     try {
@@ -303,10 +335,18 @@ exports.cancelReservation = async (req, res) => {
         const idRoom = reservation.room;
         const room = await Room.findOne({_id: idRoom});
         const arrayDates = Object.values(room.dates);
-        
-        
-        
-        //const reservationDeleted = await Reservation.findOneAndDelete({_id: idReservation});
+        arrayDates.forEach((item) => {
+            //ESTOS VIENEN DE LA DB
+            var start = item.date.startDate;
+            var final = item.date.finishDate;
+            if(start.getTime() == reservation.startDate.getTime() && final.getTime() == reservation.finishDate.getTime()){
+                console.log(arrayDates);
+                console.log(arrayDates.indexOf(item));
+                arrayDates.splice(arrayDates.indexOf(item), 1);
+            }
+        });
+        const roomUpdated = await Room.findOneAndUpdate({_id: idRoom}, {dates: arrayDates}, {new: true});
+        const reservationDeleted = await Reservation.findOneAndDelete({_id: idReservation});
         return res.status(200).send({message: "Reservation canceled!"});
     } catch (err) {
         console.log(err);

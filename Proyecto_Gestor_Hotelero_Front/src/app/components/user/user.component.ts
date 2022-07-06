@@ -12,6 +12,10 @@ export class UserComponent implements OnInit {
   
   idHotel:any
 
+  arrayPeople: any = [];
+
+  search: string = "";
+
   constructor(
     public navBarRest: NavBarLoginRestService,
     public managerRest: ManagerRestService
@@ -19,6 +23,7 @@ export class UserComponent implements OnInit {
 
   ngOnInit(): void {
     this.getHotelByAdmin();
+    this.getPeople();
   }
 
   getHotelByAdmin(){
@@ -35,6 +40,18 @@ export class UserComponent implements OnInit {
         });
       }
     })
+  }
+
+  getPeople(){
+    this.managerRest.getPeople(this.navBarRest.getUser()._id).subscribe({
+      next: (res: any) => {
+        this.arrayPeople = res.arrayUsers;
+      },
+      error: (err) => {
+        console.log(err);
+        return err;
+      }
+    });
   }
 
 }

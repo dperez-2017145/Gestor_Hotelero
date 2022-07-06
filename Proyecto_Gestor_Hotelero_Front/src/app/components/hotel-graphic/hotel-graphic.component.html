@@ -1,1 +1,26 @@
-<p>hotel-graphic works!</p>
+
+<div class="background">
+    <app-nav-bar></app-nav-bar>
+    <div class="mt-3">
+        <br />
+        <div class="row justify-content-center align-items-center">
+          <div class="col-xl-7">
+            <div class="card mb-7">
+              <div class="card-header text-center" style="background-color: #47b6b9">
+                ¡Para mayor información posiciónate sobre el hotel!
+                <i class="fas fa-chart-area me-1"></i>
+                <i class="bi bi-file-earmark-text-fill"></i>
+              </div>
+    
+              <div class="card-footer p-4 pt-0 bg-transparent border-top-20" height="300000px">
+                <div style="display: block">
+                  <canvas baseChart chartType="bar" [datasets]="chartData1" [colors]="chartColors" [labels]="chartLabels1"
+                    [options]="chartOptions1" [plugins]="chartPlugins1" [legend]="chartLegend1">
+                  </canvas>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+</div>

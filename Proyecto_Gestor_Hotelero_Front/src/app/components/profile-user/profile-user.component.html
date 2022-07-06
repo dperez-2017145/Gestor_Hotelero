@@ -19,7 +19,29 @@
                         <input *ngIf="this.role === 'CLIENT'" [(ngModel)]="this.userClient.phone" name="phome" type="text" class="field" placeholder="Phone" id="clientPhone">
                         <input *ngIf="this.role === 'CLIENT'" [(ngModel)]="this.userClient.username" name="username" type="text" class="field" placeholder="Username" id="clientUsername">
                         <button *ngIf="this.role === 'CLIENT'" (click)="updateClient()" class="buttonModalNewUser" data-bs-dismiss="modal">Update</button>
+                        <button *ngIf="this.role === 'CLIENT'"  class="mt-2 buttonModalNewUser2" data-bs-toggle="modal" data-bs-target="#exampleModalDelete">Delete Account</button>
                     </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- MODAL PARA ELIMINAR UN SERVICIO -->
+<div class="modal fade" id="exampleModalDelete" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="container">
+            <div class="modal-content">
+                <div class="contact-box">
+                    <div class="left"></div>
+                    <div class="right">
+                        <div class="position-relative">
+                            <button type="button" class="btn-close position-absolute top-0 start-100 translate-middle" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <h4>Are you sure to delete your account?</h4>
+                        <button (click)="deleteAccount()" class="buttonModalNewUser mb-3" data-bs-dismiss="modal">Yes</button>
+                        <button style="background: #F8333C;" class="buttonModalNewUser" data-bs-dismiss="modal">No</button>
+                    </div>
                 </div>
             </div>
         </div>

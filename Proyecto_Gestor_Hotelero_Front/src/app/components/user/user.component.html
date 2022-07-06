@@ -1,6 +1,5 @@
 <app-nav-bar></app-nav-bar>
 <div class="body">
-
     <!-- <h1 class="text-center mt-3">CLIENTES DEL HOTEL EJEMPLO </h1> -->
     <div class="d-flex justify-content-between mt-5">
         <div>
@@ -12,47 +11,29 @@
                 My Hotel
              </button>
         </div>
-        <div></div>
+        <div>
+            <div class="input-group mt-3 mb-3">
+                <input [(ngModel)]="this.search" name="filter" type="text" class="form-control confButton" placeholder="User" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                <span class="spanSearch input-group-text"><img class="img-spanSeach" src="../../../assets/img/lupa.png" alt="lupa"></span>
+            </div> 
+        </div>
         <div></div>
     </div>
-
-
-    <div class="container mt-5">
-
-        <!--Card Usuario-->
-        <div class="col-md-4">
-            <div class="card profile-card-3">
-                <div class="background-block">
-                    <img src="../../../assets/img/Hotel bg.jpg" alt="profile-sample1" class="background" />
-                </div>
-                <div class="profile-thumb-block">
-                    <img src="../../../assets/img/client.png" alt="profile-image" class="profile" />
-                </div>
-                <div class="card-content">
-                    <h2>Cliente 1</h2>
-                </div>
-            </div>
-        </div>
-
-        <!--Card Usuario-->
-        <div class="col-md-4">
-            <div class="card profile-card-3">
-                <div class="background-block">
-                    <img src="../../../assets/img/Hotel bg.jpg" alt="profile-sample1" class="background" />
-                </div>
-                <div class="profile-thumb-block">
-                    <img src="../../../assets/img/client.png" alt="profile-image" class="profile" />
-                </div>
-                <div class="card-content">
-                    <h2>Cliente 2</h2>
-                </div>
-            </div>
-        </div>
-
         
-
-
-
+    <div class="container mt-5">
+        <!--Card Usuario-->
+        <div *ngFor="let user of arrayPeople | searchUser:search" class="col-md-4">
+            <div class="card profile-card-3">
+                <div class="background-block">
+                    <img src="../../../assets/img/Hotel bg.jpg" alt="profile-sample1" class="background" />
+                </div>
+                <div class="profile-thumb-block">
+                    <img src="../../../assets/img/client.png" alt="profile-image" class="profile" />
+                </div>
+                <div class="card-content">
+                    <h2>{{user}}</h2>
+                </div>
+            </div>
+        </div>
     </div>
-
 </div>

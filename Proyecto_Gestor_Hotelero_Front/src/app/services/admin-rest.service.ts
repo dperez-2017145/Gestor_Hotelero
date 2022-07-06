@@ -35,7 +35,10 @@ export class AdminRestService {
     return this.http.put(environment.baseUri + "admin/updateHotel/" + idHotel, params, {headers:this.httpOptions});
   }
 
-  //DELETE HOTEL PENDIENTE
+  //DELETE HOTEL
+  deleteHotel(idHotel: any){
+    return this.http.delete(environment.baseUri + "admin/deleteHotel/" + idHotel, {headers: this.httpOptions});
+  }
 
 
   //SERVICIOS DEL MANAGEr
@@ -47,4 +50,6 @@ export class AdminRestService {
   updateManager(idManager:any, params:{}){
     return this.http.put(environment.baseUri + "admin/updateManager/" + idManager, params, {headers:this.httpOptions});
   }
+
+  
 }

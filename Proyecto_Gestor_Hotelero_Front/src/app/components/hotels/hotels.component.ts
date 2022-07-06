@@ -172,4 +172,25 @@ export class HotelsComponent implements OnInit {
     })
   }
 
+  deleteHotel(){
+    this.adminRest.deleteHotel(this.updateHotel._id).subscribe({
+      next: (res:any)=>{
+        Swal.fire({
+          title: res.message,
+          icon: 'success',
+          showConfirmButton: false
+        });
+        this.getHotels();
+      },
+      error:(err)=>{
+        Swal.fire({
+          title: err.error.message || err.error,
+          icon: 'error',
+          showConfirmButton: false,
+          timer: 2000
+        });
+      }
+    });
+  }
+
 }

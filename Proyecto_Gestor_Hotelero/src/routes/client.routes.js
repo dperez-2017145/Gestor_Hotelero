@@ -18,5 +18,6 @@ api.put("/confirmateReservation/:idReservation", [middleware.isLoged, middleware
 api.put("/cancelReservation/:idReservation", [middleware.isLoged, middleware.isClient], clientController.cancelReservation);
 api.get("/getReservations/:idClient", middleware.isLoged, clientController.getReservations);
 api.get("/getDates/:idRoom", middleware.isLoged, clientController.getDates);
+api.delete("/deleteAccount/:idClient", [middleware.isLoged, middleware.isClient], clientController.deleteAccount);
 
 module.exports = api;

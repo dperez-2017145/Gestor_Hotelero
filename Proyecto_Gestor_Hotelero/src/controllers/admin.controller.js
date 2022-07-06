@@ -6,6 +6,10 @@ const Client = require('../models/client.model');
 const Hotel = require('../models/hotel.model');
 const jwt = require('../services/jwt');
 const {dataObligatory, dencryptPassword, encryptPassword} = require('../utils/validate');
+const Reservation = require("../models/reservation.model");
+const Room = require("../models/room.model");
+const Service = require("../models/hotelService.model");
+const Event = require("../models/event.model");
 
 //FUNCIÓN PARA LOGEARSE
 exports.login = async(req, res)=>{
@@ -255,6 +259,24 @@ exports.updateManager = async (req, res) => {
                 }
             }
         }
+    } catch (err) {
+        console.log(err);
+        return err;
+    }
+}
+
+//FUNCION PARA ELIMINAR UN HOTEL
+exports.deleteHotel = async (req, res) => {
+    try {
+        const idHotel = req.params.idHotel;
+        const hotelFound = await Hotel.findOne({_id: idHotel});
+        const managerDeleted = await Manager.findOneAndDelete({_id: hotelFound.idManager});
+        const reservationsDeleted = await Reservation.deleteMany({idHotel: idHotel});
+        const roomsDeleted = await Room.deleteMany({idHotel: idHotel});
+        const servicesDeleted = await Service.deleteMany({idHotel: idHotel});
+        const eventsDeleted = await Event.deleteMany({idHotel: idHotel});
+        const hotelDeleted = await Hotel.findOneAndDelete({idHotel: idHotel});
+        return res.status(200).send({message: "Hotel deleted."});
     } catch (err) {
         console.log(err);
         return err;

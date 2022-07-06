@@ -361,7 +361,7 @@
 }
 
 .left{
-	background: url("../../../assets/img/basura.png") no-repeat center;
+	background: url("../../../assets/img/hoteles-lujo-destacada-1.webp") no-repeat center;
 	background-size: cover;
 	height: 100%;
 }
@@ -447,4 +447,23 @@ textarea{
     display: flex;
     align-items: flex-start;
     font-size: 1rem;
+}
+
+.imagen{
+	position: relative;
+	right: 3;
+	top: 0;
+	width: 8rem;
+}
+
+.cuadro{
+	background-color: #c9cccc;
+	border-radius: 20px;
+	padding: 0.5rem;
+}
+
+.cuadro:hover{
+	background-color: #a4aaaa;
+	border-radius: 20px;
+	padding: 0.5rem;
 }

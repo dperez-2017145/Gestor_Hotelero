@@ -73,4 +73,12 @@ export class ClientRestService {
     return this.http.get(environment.baseUri + "client/getDates/"+idRoom, {headers: this.httpOptions});
   }
 
+  cancelReservation(idReservation: any, params: any){
+    return this.http.put(environment.baseUri + "client/cancelReservation/" + idReservation, params, {headers: this.httpOptions});
+  }
+
+  deleteAccount(idClient: any){
+    return this.http.delete(environment.baseUri + "client/deleteAccount/" + idClient, {headers: this.httpOptions});
+  }
+
 }

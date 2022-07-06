@@ -14,5 +14,6 @@ api.get("/getManagersAndClients", [middleware.isLoged, middleware.isAdmin], admi
 api.put("/updateHotel/:idHotel", [middleware.isLoged, middleware.isAdmin], adminController.updateHotel);
 api.get("/getManager/:idManager", [middleware.isLoged, middleware.isAdmin], adminController.getManager); 
 api.put("/updateManager/:idManager", [middleware.isLoged, middleware.isAdmin], adminController.updateManager);
+api.delete("/deleteHotel/:idHotel", [middleware.isLoged, middleware.isAdmin], adminController.deleteHotel);
 
 module.exports = api;

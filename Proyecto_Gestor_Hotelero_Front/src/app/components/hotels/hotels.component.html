@@ -21,7 +21,11 @@
                     <span class="spanSearch input-group-text"><img class="img-spanSeach" src="../../../assets/img/lupa.png" alt="lupa"></span>
                 </div> 
             </div>
-            <div></div>
+            <div class="me-4 cuadro">
+                <a routerLink="/hoteslGrapfic">
+                    <img src="../../../assets/img/grafico.png" alt="" class="imagen">
+                </a>
+            </div>
         </div>
         <div *ngFor="let hotel of arrayHotels | searchHotelByName:search | searchHotelByDirection:searchDirection" class="container py-1">
             <div class="h1 text-center text-dark" id="pageHeaderTitle"></div>
@@ -55,8 +59,7 @@
                     <ul *ngIf="this.role === 'ADMIN'" class="postcard__tagbox">
                         <button (click)="getHotel(hotel._id)" data-bs-toggle="modal" data-bs-target="#exampleModalUpdateHotel" type="button" class="btn boton_2"><img src="../../../assets/img/lapiz.png" alt=""
                                 class="img-icons"></button>
-                        <button  (click)="getHotel(hotel._id)" type="button" class="btn boton_2"><img src="../../../assets/img/basura.png" alt=""
-                                class="img-icons"></button>
+                        <button  (click)="getHotel(hotel._id)" type="button" class="btn boton_2" data-bs-toggle="modal" data-bs-target="#exampleModalDeleteHotel"><img src="../../../assets/img/basura.png" alt="" class="img-icons"></button>
                         <button (click)="getManager(hotel.idManager)" type="button" data-bs-toggle="modal" data-bs-target="#exampleModalUpdateManager" class="btn boton_2"><img src="../../../assets/img/updateUser.png" alt=""
                                 class="img-icons"></button>
                     </ul>
@@ -159,6 +162,27 @@
              </div>
          </div>
      </div>
+     <!-- MODAL PARA ELIMINAR UN HOTEL -->
+    <div class="modal fade" id="exampleModalDeleteHotel" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="containerModal">
+                <div class="modal-content">
+                    <div class="contact-box">
+                        <div class="left"></div>
+                        <div class="right">
+                            <div class="position-relative">
+                                <button type="button" class="btn-close position-absolute top-0 start-100 translate-middle" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <h4>Are you sure to delete this hotel?</h4>
+                            <button (click)="deleteHotel()" class="buttonModalNewUser mb-3" data-bs-dismiss="modal">Yes</button>
+                            <button style="background: #F8333C;" class="buttonModalNewUser" data-bs-dismiss="modal">No</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     </section>
 </div>
+

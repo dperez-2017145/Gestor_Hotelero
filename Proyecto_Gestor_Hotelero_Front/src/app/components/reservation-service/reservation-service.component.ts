@@ -16,6 +16,8 @@ export class ReservationServiceComponent implements OnInit {
 
   arrayServices: any;
 
+  params: any ={};
+
   constructor(
     public clientRest: ClientRestService,
     public activatedRoute: ActivatedRoute,
@@ -68,6 +70,22 @@ export class ReservationServiceComponent implements OnInit {
 
   confirmateReservation(){
     this.clientRest.confirmateReservation(this.idReservation, this.idReservation).subscribe({
+      next: (res: any) => {
+        Swal.fire({
+          title: res.message,
+          icon: 'success',
+          showConfirmButton: true
+        });
+        return this.router.navigateByUrl("/hotels");
+      },
+      error: (err) => {
+        console.log(err);
+      }
+    });
+  }
+
+  cancelReservation(){
+    this.clientRest.cancelReservation(this.idReservation, this.params).subscribe({
       next: (res: any) => {
         Swal.fire({
           title: res.message,

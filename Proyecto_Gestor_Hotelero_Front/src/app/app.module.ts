@@ -21,6 +21,8 @@ import { SearchHotelByNamePipe } from './pipes/search-hotel-by-name.pipe';
 import { SearchHotelByDirectionPipe } from './pipes/search-hotel-by-direction.pipe';
 import { HotelGraphicComponent } from './components/hotel-graphic/hotel-graphic.component';
 import { ReservationsUserComponent } from './components/reservations-user/reservations-user.component';
+import { ChartsModule } from '@rinminase/ng-charts';
+import { SearchUserPipe } from './pipes/search-user.pipe';
 
 @NgModule({
   declarations: [
@@ -39,13 +41,15 @@ import { ReservationsUserComponent } from './components/reservations-user/reserv
     SearchHotelByNamePipe,
     SearchHotelByDirectionPipe,
     HotelGraphicComponent,
-    ReservationsUserComponent
+    ReservationsUserComponent,
+    SearchUserPipe
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    ChartsModule
   ],
   providers: [
     NavBarLoginRestService

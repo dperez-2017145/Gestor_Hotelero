@@ -51,6 +51,10 @@ export class ManagerRestService {
     return this.http.post(environment.baseUri + "manager/generateBill/" + idReservation, params, {headers: this.httpOptions});
   }
 
+  getPeople(idManager: any){
+    return this.http.get(environment.baseUri + "manager/getPeople/" + idManager, {headers: this.httpOptions});
+  }
+
 }
 
 

@@ -18,6 +18,7 @@
                 <h4 class="card-title font-weight-bold">{{reservation.idClient.name}}  {{reservation.idClient.lastname}}</h4>
                
                 <button (click)="generateBill(reservation._id)" *ngIf="this.role === 'MANAGER'" type="button" class="btn btn-success">Generate Bill</button>
+                <button (click)="catchId(reservation._id)" *ngIf="this.role === 'CLIENT'" type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModalDeleteReservation">Cancel Reservation</button>
               </div>
               
               <hr>
@@ -41,7 +42,12 @@
                 <li class="list-inline-item">
                   <p class="text-muted">{{reservation.startDate | date:'medium':'GMT'}} <br> ‍‍‍‍‍- <br> {{reservation.finishDate | date:'medium':'GMT'}}</p>
                 </li>
+                <br>
+                <li class="list-inline-item">
+                  <p class="text-muted">Days {{reservation.days}}</p>
+                </li>
               </ul>
+
               <p class="mb-2"><strong>Services Reservation</strong></p>
               <p class="card-text">
                 <ul *ngFor="let service of reservation.services">
@@ -61,4 +67,24 @@
           
         </section>
       </div>
+</div>
+<!-- MODAL PARA ELIMINAR UNA RESERVACION -->
+<div class="modal fade" id="exampleModalDeleteReservation" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="container1">
+          <div class="modal-content">
+              <div class="contact-box">
+                  <div class="left"></div>
+                  <div class="right">
+                      <div class="position-relative">
+                          <button type="button" class="btn-close position-absolute top-0 start-100 translate-middle" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <h4>Are you sure to delete this reservation?</h4>
+                      <button (click)="cancelReservation(this.idReservation)" class="buttonModalNewUser mb-3" data-bs-dismiss="modal">Yes</button>
+                      <button style="background: #F8333C;" class="buttonModalNewUser" data-bs-dismiss="modal">No</button>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
 </div>

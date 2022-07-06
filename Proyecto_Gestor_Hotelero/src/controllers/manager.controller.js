@@ -6,6 +6,7 @@ const Service = require('../models/hotelService.model');
 const Hotel = require("../models/hotel.model");
 const Reservation = require("../models/reservation.model");
 const Bill = require("../models/bill.model");
+const Client = require("../models/client.model");
 
 //FUNCIÓN PARA CREAR UNA HABITACIÓN ASIGNADA A UN HOTEL.
 exports.createRoom = async (req, res) => {
@@ -339,6 +340,27 @@ exports.getReservationsHotel = async (req, res) => {
         const idHotel = req.params.idHotel;
         const reservations = await Reservation.find({idHotel: idHotel, status: false}).populate('idClient').populate('idHotel').populate('room');
         return res.status(200).send({reservations});
+    } catch (err) {
+        console.log(err);
+        return err;
+    }
+}
+
+exports.getPeople = async (req, res) => {
+    try {
+        const idManager = req.params.idManager;
+        let arrayUsers = [];
+        const hotel = await Hotel.findOne({idManager: idManager});
+        //Se almacenan las reservaciones del hotel capturado arriba
+        const reservations = await Reservation.find({idHotel: hotel._id});
+        for(let i = 0; i < reservations.length; i++){
+            const user = await Client.findOne({_id: reservations[i].idClient});
+            if(!arrayUsers.includes(user.username)){
+                const user = await Client.findOne({_id: reservations[i].idClient});
+                arrayUsers.push(user.username);
+            }
+        }
+        return res.status(200).send({arrayUsers});
     } catch (err) {
         console.log(err);
         return err;
