@@ -408,4 +408,8 @@ export class ProfileHotelComponent implements OnInit {
     this.router.navigateByUrl("/reservationsUser/"+this.idHotel);
   }
 
+  roomReservation(){
+    this.router.navigateByUrl("/roomStadistic/"+this.idHotel);
+  }
+
 }

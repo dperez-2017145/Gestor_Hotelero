@@ -23,6 +23,7 @@ import { HotelGraphicComponent } from './components/hotel-graphic/hotel-graphic.
 import { ReservationsUserComponent } from './components/reservations-user/reservations-user.component';
 import { ChartsModule } from '@rinminase/ng-charts';
 import { SearchUserPipe } from './pipes/search-user.pipe';
+import { RoomReservationComponent } from './components/room-reservation/room-reservation.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { SearchUserPipe } from './pipes/search-user.pipe';
     SearchHotelByDirectionPipe,
     HotelGraphicComponent,
     ReservationsUserComponent,
-    SearchUserPipe
+    SearchUserPipe,
+    RoomReservationComponent
   ],
   imports: [
     BrowserModule,

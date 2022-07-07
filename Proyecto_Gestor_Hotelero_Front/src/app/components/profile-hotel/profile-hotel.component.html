@@ -37,9 +37,43 @@
         <span></span>
         See Reservations
     </button>
+    <button *ngIf="this.role === 'ADMIN'" (click)="this.roomReservation()" class="btn btn-secondary ms-5" type="button">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        Rooms Statistics
+    </button>
     </div>
     <div></div>
     <div></div>
+</div>
+<div class="table" >
+    
+    <h1>Rooms</h1>
+    <table class="table">
+    <thead style="background-color: #79eb9f;">
+        <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Type</th>
+        <th scope="col">Price</th>
+        
+        <th *ngIf="this.role === 'MANAGER'" scope="col">Actions</th>
+        </tr>
+    </thead>
+    <tbody *ngFor="let room of arrayRooms" class="table-group-divider">
+        <tr class="texto">
+        <td>{{room.name}}</td>
+        <td>{{room.type}}</td>
+        <td>Q {{room.price}}</td>
+        
+        <td *ngIf="this.role === 'MANAGER'">
+            <button (click)="getRoom(room._id)" type="button" class="btn btn-primary me-3" data-bs-toggle="modal" data-bs-target="#exampleModalUpdateRoom"><img src="../../../assets/img/lapiz.png" alt="" class="img-icons"></button>
+            <button (click)="getRoom(room._id)" type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModalDeleteRoom"><img src="../../../assets/img/basura.png" alt="" class="img-icons"></button>
+        </td>
+        </tr>
+    </tbody>
+    </table>
 </div>
 <div class="table">
     <h1>Services</h1>
@@ -89,33 +123,7 @@
     </table>
 </div>
 
-<div class="table" >
-    
-    <h1>Rooms</h1>
-    <table class="table">
-    <thead style="background-color: #79eb9f;">
-        <tr>
-        <th scope="col">Name</th>
-        <th scope="col">Type</th>
-        <th scope="col">Price</th>
-        <th scope="col">Status</th>
-        <th *ngIf="this.role === 'MANAGER'" scope="col">Actions</th>
-        </tr>
-    </thead>
-    <tbody *ngFor="let room of arrayRooms" class="table-group-divider">
-        <tr class="texto">
-        <td>{{room.name}}</td>
-        <td>{{room.type}}</td>
-        <td>Q {{room.price}}</td>
-        <td>{{room.status}}</td>
-        <td *ngIf="this.role === 'MANAGER'">
-            <button (click)="getRoom(room._id)" type="button" class="btn btn-primary me-3" data-bs-toggle="modal" data-bs-target="#exampleModalUpdateRoom"><img src="../../../assets/img/lapiz.png" alt="" class="img-icons"></button>
-            <button (click)="getRoom(room._id)" type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModalDeleteRoom"><img src="../../../assets/img/basura.png" alt="" class="img-icons"></button>
-        </td>
-        </tr>
-    </tbody>
-    </table>
-</div>
+
 <!-- MODAL PARA AGREGAR UN SERVICIO -->
 <div class="modal fade" id="exampleModalAddService" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg">
