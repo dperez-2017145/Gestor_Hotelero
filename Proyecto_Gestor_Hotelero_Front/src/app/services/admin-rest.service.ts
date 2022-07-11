@@ -40,9 +40,7 @@ export class AdminRestService {
     return this.http.delete(environment.baseUri + "admin/deleteHotel/" + idHotel, {headers: this.httpOptions});
   }
 
-
-  //SERVICIOS DEL MANAGEr
-
+  //SERVICIOS DEL MANAGER
   getManager(idManager:any){
     return this.http.get(environment.baseUri + "admin/getManager/" + idManager, {headers:this.httpOptions});
   }
