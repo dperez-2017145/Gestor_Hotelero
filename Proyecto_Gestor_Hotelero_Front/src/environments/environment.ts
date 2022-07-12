@@ -4,5 +4,5 @@
 
 export const environment = {
   production: false,
-  baseUri: 'http://localhost:3000/'
+  baseUri: 'https://gestor-hotelero.herokuapp.com/'
 };
