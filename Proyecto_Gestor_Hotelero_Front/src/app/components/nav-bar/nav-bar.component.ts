@@ -25,4 +25,12 @@ export class NavBarComponent implements OnInit {
     this.router.navigateByUrl("home");
   }
 
+  home(){
+    if(this.role === "ADMIN" || this.role === "CLIENT"){
+      this.router.navigateByUrl("/hotels");
+    }else{
+      this.router.navigateByUrl("/user");
+    }
+  }
+
 }

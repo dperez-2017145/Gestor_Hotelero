@@ -4,7 +4,8 @@ const mongoose = require('mongoose');
 
 exports.init = ()=>{
     mongoose.Promise = global.Promise;
-    const uriMongo = 'mongodb://127.0.0.1:27017/DBProyectoGestorHotelero';
+    // const uriMongo = 'mongodb://127.0.0.1:27017/DBProyectoGestorHotelero';
+    const uriMongo = 'mongodb+srv://jRuiz:123@gestorhotelero.aksjl2m.mongodb.net/?retryWrites=true&w=majority';
 
     mongoose.connection.on('error', ()=>{
         console.log('MongoDB | Could not connect to MongoDB');
