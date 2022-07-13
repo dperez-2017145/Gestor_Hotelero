@@ -2,12 +2,17 @@
     <app-nav-bar></app-nav-bar>
     <div class="body">
         <div class="container mt-4">
-            <h2> Seleccione los servicios que desee adquirir:</h2>
+            <h2>Select the services you want to purchase:</h2>
             <div class="align">
-                <select [(ngModel)]="this.idService" class="mt-4">
-                    <option selected class="selected">Seleccione el Servicio</option>
-                    <option *ngFor="let service of arrayServices" value="{{service._id}}">{{service.name}} | Q.{{service.price}}</option>
-                </select>
+                <div>
+                    <select [(ngModel)]="this.idService" class="mt-4">
+                        <option selected class="selected">Select the service</option>
+                        <option *ngFor="let service of arrayServices" value="{{service._id}}">{{service.name}} | Q.{{service.price}}</option>
+                    </select>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down-fill" viewBox="0 0 16 16">
+                        <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
+                      </svg>
+                </div>
             </div>
             <div class="align mt-4">
                 <div class="options">

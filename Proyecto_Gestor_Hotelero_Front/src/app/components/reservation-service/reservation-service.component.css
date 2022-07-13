@@ -26,7 +26,7 @@ h2 {
 }
 
 .container {
-    background-color: #B3B6C3;
+    background-color: #1c1c1f7c;
     padding: 3%;
     border-radius: 20px 20px 20px;
 
@@ -75,9 +75,9 @@ select{
     text-align: center;
     font-size: 15px;
     cursor: pointer;
-    background-color: #777984;
+    background-color: #ee703e;
     color: #ffffff;
-    border: 6px solid #777984;
+    border: 6px solid #ee703e;
     border-radius: 5px;
     background-size: 47px;
     background-position: 247px 0.5px;
@@ -88,8 +88,8 @@ select::-ms-expand{
     display: none;
 }
 select:hover{
-    background-color: #4f5056;
-    border-color: #4f5056;
+    background-color: #ec8359;
+    border-color: #ec8359;
     font-weight: 600;
 }
 select option{
