@@ -14,6 +14,8 @@ export class ManagerRestService {
     "Authorization": this.navBarRest.getToken()
   });
 
+  httpOption = new HttpHeaders().set("Content-Type", "application/json");
+
   constructor(
     public http: HttpClient,
     public navBarRest: NavBarLoginRestService
@@ -52,7 +54,7 @@ export class ManagerRestService {
   }
 
   getPeople(idManager: any){
-    return this.http.get(environment.baseUri + "manager/getPeople/" + idManager, {headers: this.httpOptions});
+    return this.http.get(environment.baseUri + "manager/getPeople/" + idManager, {headers: this.httpOption.set("Authorization",this.navBarRest.getToken())});
   }
 
 }

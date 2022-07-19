@@ -84,6 +84,7 @@ export class HotelsComponent implements OnInit {
         this.updateHotel.email = res.hotelFound.email;
         this.updateHotel.phone = res.hotelFound.phone;
         this.updateHotel._id = res.hotelFound._id;
+        console.log(this.updateHotel._id);
       },
       error:(err)=>{
         console.log(err);

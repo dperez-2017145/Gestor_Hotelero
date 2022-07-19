@@ -14,7 +14,6 @@ export class AdminRestService {
     "Authorization": this.navBarRest.getToken()
   });
 
-
   constructor(
     public http: HttpClient,
     public navBarRest: NavBarLoginRestService,
