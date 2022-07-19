@@ -20,32 +20,34 @@ export class AdminRestService {
     public hotelRest: HotelRestService
   ) { }
 
+  httpOption = new HttpHeaders().set("Content-Type", "application/json");
+
   //FUNCIONES DEL HOTEL
 
   getHotel(idHotel:any){
-    return this.http.get(environment.baseUri + "admin/getHotel/" + idHotel, {headers:this.httpOptions});
+    return this.http.get(environment.baseUri + "admin/getHotel/" + idHotel, {headers: this.httpOption.set("Authorization",this.navBarRest.getToken())});
   }
 
   createHotel(params:{}){
-    return this.http.post(environment.baseUri + "admin/createHotel", params, {headers:this.httpOptions});
+    return this.http.post(environment.baseUri + "admin/createHotel", params, {headers: this.httpOption.set("Authorization",this.navBarRest.getToken())});
   }
 
   updateHotel(idHotel:any, params:{}){
-    return this.http.put(environment.baseUri + "admin/updateHotel/" + idHotel, params, {headers:this.httpOptions});
+    return this.http.put(environment.baseUri + "admin/updateHotel/" + idHotel, params, {headers: this.httpOption.set("Authorization",this.navBarRest.getToken())});
   }
 
   //DELETE HOTEL
   deleteHotel(idHotel: any){
-    return this.http.delete(environment.baseUri + "admin/deleteHotel/" + idHotel, {headers: this.httpOptions});
+    return this.http.delete(environment.baseUri + "admin/deleteHotel/" + idHotel, {headers: this.httpOption.set("Authorization",this.navBarRest.getToken())});
   }
 
   //SERVICIOS DEL MANAGER
   getManager(idManager:any){
-    return this.http.get(environment.baseUri + "admin/getManager/" + idManager, {headers:this.httpOptions});
+    return this.http.get(environment.baseUri + "admin/getManager/" + idManager, {headers: this.httpOption.set("Authorization",this.navBarRest.getToken())});
   }
 
   updateManager(idManager:any, params:{}){
-    return this.http.put(environment.baseUri + "admin/updateManager/" + idManager, params, {headers:this.httpOptions});
+    return this.http.put(environment.baseUri + "admin/updateManager/" + idManager, params, {headers: this.httpOption.set("Authorization",this.navBarRest.getToken())});
   }
 
   
